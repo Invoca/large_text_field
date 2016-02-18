@@ -20,4 +20,9 @@ Gem::Specification.new do |s|
   # s.add_dependency "jquery-rails"
 
   s.add_development_dependency "sqlite3"
+
+  s.add_dependency 'hobo_fields', '2.0.1'
+  s.add_dependency 'hobo_support', '2.0.1'
+
+  s.add_development_dependency 'invoca-utils',       '~> 0.0.2'
 end
