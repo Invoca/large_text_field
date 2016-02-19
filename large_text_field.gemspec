@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Bob Smith"]
   s.email       = ["bob@invoca.com"]
   s.homepage    = "http://github.com/invoca"
-  s.summary     = "Large text fields on active record models that can be defined without migrations."
-  s.description = "TODO: Description of LargeTextField."
+  s.summary     = "Add large text fields to models without database migrations"
+  s.description = "Large text fields are kept in a central table, and polymorphically associated with your models.  Access and assignemnt should behave as if it was a column on the same table."
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
