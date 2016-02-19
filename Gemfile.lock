@@ -10,7 +10,7 @@ PATH
   specs:
     large_text_field (0.0.1)
       hobo_support (= 2.0.1)
-      rails (~> 3.2.22.1)
+      rails (~> 3.2.22)
 
 GEM
   remote: https://rubygems.org/

@@ -20,5 +20,4 @@ class Library < ActiveRecord::Base
     self.notes = self.class.default_notes
   end
 
-
 end
