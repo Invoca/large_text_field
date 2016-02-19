@@ -2,15 +2,12 @@ module LargeTextField
   module Owner
     extend ActiveSupport::Concern
     include ActiveSupport::Callbacks
-    include LargeTextField::RealReload
 
     included do
       has_many                   :large_text_fields, :class_name => "LargeTextField::NamedTextValue", :as=>:owner, :autosave=>true, :dependent=>:destroy, :inverse_of => :owner
       validate                   :validate_large_text_fields
       before_save                :write_large_text_field_changes
       define_callbacks           :large_text_field_save
-      # This is what was here before, but causes the included module not see this at all :include ActiveSupport::Callbacks,
-      # if we do it the above level the module is able to see the methods provided by ActiveSupport::Callbacks
 
       class_attribute :large_text_field_options
       self.large_text_field_options = {}
@@ -30,6 +27,12 @@ module LargeTextField
       result
     end
 
+    def reload
+      super
+      @text_field_hash = nil
+      self
+    end
+
     def text_field_hash
       @text_field_hash ||= large_text_fields.inject({}){ |memo,text_field| memo[text_field.field_name] = text_field; memo }
     end
@@ -38,7 +41,7 @@ module LargeTextField
       @text_field_hash
     end
 
-    def get_text_field field_name
+    def get_text_field(field_name)
       text_field_hash[field_name.to_s]._?.value || ''
     end
 
