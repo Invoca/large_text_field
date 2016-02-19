@@ -2,8 +2,6 @@ require 'test_helper'
 
 module LargeTextField
   class OwnerTest < ActiveSupport::TestCase
-    include AssertionHelpers
-
     context "updating in large_text_field_save hook" do
 
       { 'empty string' => '', 'non empty string' => 'this is some text' }.each do |name, value|

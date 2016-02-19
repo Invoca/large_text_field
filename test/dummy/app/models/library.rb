@@ -1,16 +1,13 @@
 class Library < ActiveRecord::Base
   include LargeTextField::Owner
 
-  # We are making this a public library, so we are removing hobo fields as a dependency.
-  # fields do
-  #   name                  :string, :limit => 255
-  # end
+  # Schema
+  #   name :string, :limit => 255
+  attr_accessible  :name, :description, :catalog, :notes
 
   large_text_field :description, singularize_errors: true
   large_text_field :catalog, maximum: 500, singularize_errors: true
   large_text_field :notes
-
-  attr_accessible  :name, :description, :catalog, :notes
 
   cattr_accessor :default_notes
 
