@@ -1,12 +1,4 @@
 GIT
-  remote: git@github.com:Invoca/hobo_fields
-  revision: 248730363294ea30c836eda45ea34a714eacc5c2
-  ref: 248730363294ea30c836eda45ea34a714eacc5c2
-  specs:
-    hobo_fields (2.0.1)
-      hobo_support (= 2.0.1)
-
-GIT
   remote: git@github.com:Invoca/hobosupport
   revision: 06838aaf6a7be463f8e54d1b177b52a4b13fdbb6
   specs:
@@ -127,9 +119,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  hobo_fields (= 2.0.1)!
   hobo_support (= 2.0.1)!
-  invoca-utils (~> 0.0.2)
+  invoca-utils (= 0.0.2)
   jquery-rails
   large_text_field!
   minitest (~> 4.7.5)

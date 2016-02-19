@@ -17,7 +17,6 @@ gem "jquery-rails"
 # gem 'debugger'
 
 
-gem 'hobo_fields',           '2.0.1',    git: 'git@github.com:Invoca/hobo_fields', ref: '248730363294ea30c836eda45ea34a714eacc5c2'
 gem 'hobo_support',          '2.0.1',    git: 'git@github.com:Invoca/hobosupport'
 
 group :test do

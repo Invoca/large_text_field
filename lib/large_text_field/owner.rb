@@ -25,7 +25,6 @@ module LargeTextField
         result.send(:remove_instance_variable, var) unless var.in? [:@aggregation_cache, :@association_cache, :@attributes, :@attributes_cache, :@changed_attributes, :@destroyed, :@marked_for_destruction, :@new_record, :@previously_changed, :@readonly]
       end
 
-
       self.large_text_field_options.keys.each { |k| result.set_text_field(k, self.get_text_field(k)) }
 
       result
@@ -65,7 +64,7 @@ module LargeTextField
           value = text_field_hash[k]._?.value
           conjugation = options[:singularize_errors] ? "is" : "are"
           maximum = options[:maximum] || MAX_LENGTH
-          errors.add k, "#{conjugation} too long (maximum is #{RailsHelpers::number_with_delimiter( maximum )} characters)" if value.present? && value.size > maximum
+          errors.add k, "#{conjugation} too long (maximum is #{self.class.number_with_delimiter( maximum )} characters)" if value.present? && value.size > maximum
         end
       end
     end
@@ -87,7 +86,7 @@ module LargeTextField
           if !maximum.is_a? Fixnum
             raise ArgumentError, "maximum must be a number"
           elsif maximum > MAX_LENGTH
-            raise ArgumentError, "maximum can't be greater than #{RailsHelpers::number_with_delimiter(MAX_LENGTH)}"
+            raise ArgumentError, "maximum can't be greater than #{number_with_delimiter(MAX_LENGTH)}"
           elsif maximum < 0
             raise ArgumentError, "maximum can't be less than 0"
           end
@@ -97,6 +96,10 @@ module LargeTextField
         define_method( field_name )              {         get_text_field( field_name )        }
         define_method( "#{field_name}=" )        { |value| set_text_field( field_name, value ) }
         define_method( "#{field_name}_changed?" ){         text_field_changed( field_name )    }
+      end
+
+      def number_with_delimiter(value)
+        value.to_i.to_s.gsub(/(\d)(?=(\d\d\d)+(?!\d))/, "\\1,")
       end
     end
   end
