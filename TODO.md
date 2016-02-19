@@ -19,7 +19,6 @@ Remove dependency on hobo_fields. ( Sad )
 
 invoca_active_record
 
-
 Integrate with web repo.
 
 This is now dependent on TECH-903 which removes copy in favor of dup.
