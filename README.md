@@ -39,9 +39,3 @@ The large_text_field macro takes the following options...
 ```
 
 This project rocks and uses MIT-LICENSE.  You should too.
-
-TODO:
-
-* Add test: reload behavior when updates come from somewhere else.
-* Add test: cascading delete behavior.
-* Add test for singularize_errors

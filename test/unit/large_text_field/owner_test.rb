@@ -21,7 +21,7 @@ module LargeTextField
 
       should "raise error on saving nil value" do
         begin
-          Library.default_notes = nil
+          Library.default_notes = :nil
           assert_raises RuntimeError do
             @library = Library.create!(name: "Smithsonian")
           end
@@ -40,7 +40,7 @@ module LargeTextField
       should "declare the association when it is first described and other meta data when it is first defined" do
         assert_equal :has_many, Library.reflections[:large_text_fields].macro
 
-        assert_equal( {}, Library.large_text_field_options['description'] )
+        assert_equal( {singularize_errors: true}, Library.large_text_field_options['description'] )
       end
 
       should "read from a file" do
@@ -125,17 +125,22 @@ module LargeTextField
         assert_equal "first",  @library.description
       end
 
-      # TODO - is/are - bah!
       should "validate the maximum length" do
+        @library.notes = "a" * ( LargeTextField::MAX_LENGTH + 1 )
+        assert !@library.valid?
+        assert_equal_with_diff( ["Notes are too long (maximum is 5,000,000 characters)"], @library.errors.full_messages )
+      end
+
+      should "singularize the errors if requested" do
         @library.description = "a" * ( LargeTextField::MAX_LENGTH + 1 )
         assert !@library.valid?
-        assert_equal_with_diff( ["Description are too long (maximum is 5,000,000 characters)"], @library.errors.full_messages )
+        assert_equal_with_diff( ["Description is too long (maximum is 5,000,000 characters)"], @library.errors.full_messages )
       end
 
       should "allow a custom maximum length to be provided" do
         @library.catalog = "1" *501
         assert_equal false, @library.valid?
-        assert_equal_with_diff [ "Catalog are too long (maximum is 500 characters)" ], @library.errors.full_messages
+        assert_equal_with_diff [ "Catalog is too long (maximum is 500 characters)" ], @library.errors.full_messages
       end
 
       should "prevent a non-Fixnum to be provided for a custom maximum" do
@@ -287,6 +292,25 @@ module LargeTextField
         assert !@library.instance_variable_defined?( "@text_field_hash" )
         assert @library.valid?
         assert !@library.instance_variable_defined?( "@text_field_hash" )
+      end
+
+      should "reload changes when they come from a different model" do
+        @library = Library.create!(name: "Cambridge University Library", description: "in england")
+        @second_version = Library.find(@library.id)
+
+        @second_version.update_attributes!(description: "The main research library of the University of Cambridge in England")
+
+        assert_equal "The main research library of the University of Cambridge in England", @library.reload.description
+      end
+
+      should "delete large text fields when the owner is destroyed"do
+        assert_equal 0, LargeTextField::NamedTextValue.count
+
+        @library = Library.create!(name: "Cambridge University Library", description: "in england")
+        assert_equal 1, LargeTextField::NamedTextValue.count
+
+        @library.destroy
+        assert_equal 0, LargeTextField::NamedTextValue.count
       end
     end
 
