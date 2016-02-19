@@ -68,7 +68,7 @@ module LargeTextField
           value = text_field_hash[k]._?.value
           conjugation = options[:singularize_errors] ? "is" : "are"
           maximum = options[:maximum] || MAX_LENGTH
-          errors.add k, "#{conjugation} too long (maximum is #{self.class.number_with_delimiter( maximum )} characters)" if value.present? && value.size > maximum
+          errors.add k, "#{conjugation} too long (maximum is #{self.class.formatted_integer_value( maximum )} characters)" if value.present? && value.size > maximum
         end
       end
     end
@@ -90,7 +90,7 @@ module LargeTextField
           if !maximum.is_a? Fixnum
             raise ArgumentError, "maximum must be a number"
           elsif maximum > MAX_LENGTH
-            raise ArgumentError, "maximum can't be greater than #{number_with_delimiter(MAX_LENGTH)}"
+            raise ArgumentError, "maximum can't be greater than #{formatted_integer_value(MAX_LENGTH)}"
           elsif maximum < 0
             raise ArgumentError, "maximum can't be less than 0"
           end
@@ -101,8 +101,8 @@ module LargeTextField
         define_method( "#{field_name}=" )        { |value| set_text_field( field_name, value ) }
         define_method( "#{field_name}_changed?" ){         text_field_changed( field_name )    }
       end
-
-      def number_with_delimiter(value)
+      
+      def formatted_integer_value(value)
         value.to_i.to_s.gsub(/(\d)(?=(\d\d\d)+(?!\d))/, "\\1,")
       end
     end
