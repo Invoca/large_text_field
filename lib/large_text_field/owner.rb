@@ -16,13 +16,7 @@ module LargeTextField
     def dup
       result = super
 
-      # TODO - not comfortable reproducing this here.
-      # This behavior *should* be a part of rails.
-      result.changed_attributes.clear
-      result.instance_variables.each do |var|
-        result.send(:remove_instance_variable, var) unless var.in? [:@aggregation_cache, :@association_cache, :@attributes, :@attributes_cache, :@changed_attributes, :@destroyed, :@marked_for_destruction, :@new_record, :@previously_changed, :@readonly]
-      end
-
+      result.send(:remove_instance_variable, :@text_field_hash)
       self.large_text_field_options.keys.each { |k| result.set_text_field(k, self.get_text_field(k)) }
 
       result
@@ -101,7 +95,7 @@ module LargeTextField
         define_method( "#{field_name}=" )        { |value| set_text_field( field_name, value ) }
         define_method( "#{field_name}_changed?" ){         text_field_changed( field_name )    }
       end
-      
+
       def formatted_integer_value(value)
         value.to_i.to_s.gsub(/(\d)(?=(\d\d\d)+(?!\d))/, "\\1,")
       end
