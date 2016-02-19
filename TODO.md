@@ -1,5 +1,3 @@
-
-
 Create and use invoca_support gem
   - math.max
   - map_compact
@@ -14,14 +12,8 @@ Create and use invoca_active_record gem
 
 But those are private and we want this to be public, so skip that.
 
-Remove dependency on hobo_fields. ( Sad )
-
-
 invoca_active_record
 
 Integrate with web repo.
 
 This is now dependent on TECH-903 which removes copy in favor of dup.
-
-
-This isn't an interface change, but a clarification -

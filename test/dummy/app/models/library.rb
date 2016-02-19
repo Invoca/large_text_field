@@ -3,9 +3,10 @@ class Library < ActiveRecord::Base
 
   cattr_accessor :default_notes
 
-  fields do
-    name                  :string, :limit => 255
-  end
+  # We are making this a public library, so we are removing hobo fields as a dependency.
+  # fields do
+  #   name                  :string, :limit => 255
+  # end
 
   large_text_field :description
   large_text_field :catalog, maximum: 500
