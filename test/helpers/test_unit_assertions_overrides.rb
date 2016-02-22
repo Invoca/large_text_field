@@ -24,8 +24,8 @@ module Test
       private
 
       def original_raise(*args, &block)
-        assert_expected_exception = proc do |*_args|
-          message, assert_exception_helper, actual_exception = _args
+        assert_expected_exception = proc do |*arguments|
+          message, assert_exception_helper, actual_exception = arguments
           expected = assert_exception_helper.expected_exceptions
           diff = AssertionMessage.delayed_diff(expected, actual_exception)
 
