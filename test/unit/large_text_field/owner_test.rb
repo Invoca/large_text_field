@@ -274,7 +274,9 @@ module LargeTextField
         assert !@library.description_changed?
         @library.description = "a new note"
         assert @library.description_changed?
-        @library.save!; @library.reload
+        @library.save!
+        @library.reload
+
         assert !@library.description_changed?
         @library.description = "a new note"
         assert !@library.description_changed?

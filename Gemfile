@@ -25,3 +25,5 @@ group :test do
   gem 'shoulda', '3.5.0'
   gem 'pry'
 end
+
+gem 'rubocop', require: false

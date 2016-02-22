@@ -26,6 +26,7 @@ load 'rails/tasks/engine.rake'
 Bundler::GemHelper.install_tasks
 
 require 'rake/testtask'
+require 'rubocop/rake_task'
 
 Rake::TestTask.new(:test) do |t|
   t.libs << 'lib'
@@ -34,4 +35,9 @@ Rake::TestTask.new(:test) do |t|
   t.verbose = false
 end
 
-task default: :test
+task default: [:test, :rubocop]
+
+desc 'Run rubocop'
+task :rubocop do
+  RuboCop::RakeTask.new
+end
