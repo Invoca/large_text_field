@@ -38,7 +38,7 @@ module LargeTextField
       should "declare the association when it is first described and other meta data when it is first defined" do
         assert_equal :has_many, Library.reflections[:large_text_fields].macro
 
-        assert_equal( {singularize_errors: true}, Library.large_text_field_options['description'] )
+        assert_equal( {maximum: nil, singularize_errors: true}, Library.large_text_field_options['description'] )
       end
 
       should "read from a file" do

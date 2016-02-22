@@ -29,7 +29,7 @@ module LargeTextField
     end
 
     def text_field_hash
-      @text_field_hash ||= large_text_fields.inject({}){ |memo,text_field| memo[text_field.field_name] = text_field; memo }
+      @text_field_hash ||= large_text_fields.build_hash{ |text_field| [text_field.field_name, text_field] }
     end
 
     def text_field_hash_loaded
@@ -76,11 +76,11 @@ module LargeTextField
     end
 
     module ClassMethods
-      def large_text_field(field_name, options={})
+      def large_text_field(field_name, maximum: nil, singularize_errors: false)
         field_name = field_name.to_s
 
         # validate custom maximum
-        if maximum = options[:maximum].presence
+        if maximum
           if !maximum.is_a? Fixnum
             raise ArgumentError, "maximum must be a number"
           elsif maximum > MAX_LENGTH
@@ -90,7 +90,7 @@ module LargeTextField
           end
         end
 
-        self.large_text_field_options[field_name] = options
+        self.large_text_field_options[field_name] = { maximum: maximum, singularize_errors: singularize_errors }
         define_method( field_name )              {         get_text_field( field_name )        }
         define_method( "#{field_name}=" )        { |value| set_text_field( field_name, value ) }
         define_method( "#{field_name}_changed?" ){         text_field_changed( field_name )    }

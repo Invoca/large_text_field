@@ -7,7 +7,7 @@ characters.  Defining new fields on models does not require a database migration
 central table that is polymorphically associated with the model, but they act like a column on on the same model.
 
 # How do I use it?
-In you gemfile add:
+In you Gemfile add:
 
 ```
   gem large_text_fields
@@ -32,7 +32,7 @@ The large_text_field macro takes the following options...
  * **maximum:** - The maximum length of a large text field. By default this is 5,000,000 characters, but it can be set to less using this option.
  * **singularize_errors:** - should validation messages be singularized.
 
-**Please note:**  Large text field uses the *before_save* callback on the class that is the owner for book-keeping.   Callbacks are great, but if there are multiple handlers for the same callback the order in which they are called is not predictable.  If you want to make changes to large_text_field values in the before_save callback, use the **large_text_field_save** callback instead.  This will be called before the large text field bookkeeping so your changes will be saved.  For example, this will call the save_preprocess method on your class before the large text fields are saved...
+**Please note:**  Large text field uses the *before_save* callback on the class that is the owner for book-keeping.   Callbacks are great, but if there are multiple handlers for the same callback the order in which they are called is not predictable.  If you want to make changes to large_text_field values in the before_save callback, use the **large_text_field_save** callback instead.  This will be called before the large text field book-keeping so your changes will be saved.  For example, this will call the save_preprocess method on your class before the large text fields are saved...
 
 ```ruby
   set_callback(:large_text_field_save, :before, :save_preprocess)
