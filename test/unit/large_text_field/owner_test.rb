@@ -125,33 +125,33 @@ module LargeTextField
       should "validate the maximum length" do
         @library.notes = "a" * (LargeTextField::MAX_LENGTH + 1)
         assert !@library.valid?
-        assert_equal_with_diff(["Notes are too long (maximum is 5,000,000 characters)"], @library.errors.full_messages)
+        assert_equal(["Notes are too long (maximum is 5,000,000 characters)"], @library.errors.full_messages)
       end
 
       should "singularize the errors if requested" do
         @library.description = "a" * (LargeTextField::MAX_LENGTH + 1)
         assert !@library.valid?
-        assert_equal_with_diff(["Description is too long (maximum is 5,000,000 characters)"], @library.errors.full_messages)
+        assert_equal(["Description is too long (maximum is 5,000,000 characters)"], @library.errors.full_messages)
       end
 
       should "allow a custom maximum length to be provided" do
         @library.catalog = "1" * 501
         assert_equal false, @library.valid?
-        assert_equal_with_diff ["Catalog is too long (maximum is 500 characters)"], @library.errors.full_messages
+        assert_equal ["Catalog is too long (maximum is 500 characters)"], @library.errors.full_messages
       end
 
       should "prevent a non-Fixnum to be provided for a custom maximum" do
-        assert_raise(ArgumentError, /maximum must be a number/) do
+        assert_raise(ArgumentError) do
           Library.large_text_field :not_number_maximum, maximum: "i am not a number"
         end
       end
 
       should "prevent a custom maximum length to be provided that is not in the allowable range" do
-        assert_raise ArgumentError, /maximum can't be greater than 5,000,000/ do
+        assert_raise ArgumentError do
           Library.large_text_field :bigger_than_allowed, maximum: LargeTextField::MAX_LENGTH + 1
         end
 
-        assert_raise ArgumentError, /maximum can't be less than 0/ do
+        assert_raise ArgumentError do
           Library.large_text_field :smaller_than_allowed, maximum: -1
         end
       end

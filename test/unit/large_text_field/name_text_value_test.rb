@@ -26,7 +26,7 @@ module LargeTextField
         library = Library.create!(name: "Smithsonian")
         LargeTextField::NamedTextValue.create!(field_name: "puppy", value: "Millie", owner: library)
 
-        assert_raise(ActiveRecord::StatementInvalid, /UNIQUE constraint failed/) do
+        assert_raise(ActiveRecord::StatementInvalid) do
           LargeTextField::NamedTextValue.create!(field_name: "puppy", value: "Wiki", owner: library)
         end
       end

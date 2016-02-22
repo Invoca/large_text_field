@@ -8,8 +8,6 @@ require "shoulda"
 require "minitest/unit"
 require "pry"
 
-require File.expand_path(File.dirname(__FILE__) + "/helpers/test_unit_assertions_overrides")
-
 def large_description
   <<-EOF
       The Royal Library of Alexandria or Ancient Library of Alexandria in Alexandria, Egypt, was one of the
