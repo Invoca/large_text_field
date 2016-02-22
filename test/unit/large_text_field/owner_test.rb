@@ -3,7 +3,6 @@ require 'test_helper'
 module LargeTextField
   class OwnerTest < ActiveSupport::TestCase
     context "updating in large_text_field_save hook" do
-
       { 'empty string' => '', 'non empty string' => 'this is some text' }.each do |name, value|
         should "be able to assign #{name}" do
           begin
@@ -38,7 +37,7 @@ module LargeTextField
       should "declare the association when it is first described and other meta data when it is first defined" do
         assert_equal :has_many, Library.reflections[:large_text_fields].macro
 
-        assert_equal( {maximum: nil, singularize_errors: true}, Library.large_text_field_options['description'] )
+        assert_equal({ maximum: nil, singularize_errors: true }, Library.large_text_field_options['description'])
       end
 
       should "read from a file" do
@@ -62,19 +61,19 @@ module LargeTextField
       end
 
       should "allow get and set with saves and deletes" do
-        @library.description = "badger "*200
-        assert_equal "badger "*200, @library.description
+        @library.description = "badger " * 200
+        assert_equal "badger " * 200, @library.description
 
         @library.save!
         @library.reload
-        assert_equal "badger "*200, @library.description
+        assert_equal "badger " * 200, @library.description
 
-        @library.description = "mushroom "*200
-        assert_equal "mushroom "*200, @library.description
+        @library.description = "mushroom " * 200
+        assert_equal "mushroom " * 200, @library.description
 
         @library.save!
         @library.reload
-        assert_equal "mushroom "*200, @library.description
+        assert_equal "mushroom " * 200, @library.description
 
         @library.description = ''
         assert_equal '', @library.description
@@ -86,7 +85,7 @@ module LargeTextField
 
       should "allow for concurrent sets and deletes" do
         @library.description = "first"
-        @library.catalog  = "second"
+        @library.catalog = "second"
 
         assert_equal "first",  @library.description
         assert_equal "second", @library.catalog
@@ -108,11 +107,11 @@ module LargeTextField
         assert_equal "third",  @library.description
         assert_equal '',       @library.catalog
       end
-    
+
       should "forget about changes if they are not saved" do
         @library.description = "first"
         @library.reload
-        assert_equal '',  @library.description
+        assert_equal '', @library.description
 
         @library.description = "first"
         @library.save!
@@ -124,36 +123,36 @@ module LargeTextField
       end
 
       should "validate the maximum length" do
-        @library.notes = "a" * ( LargeTextField::MAX_LENGTH + 1 )
+        @library.notes = "a" * (LargeTextField::MAX_LENGTH + 1)
         assert !@library.valid?
-        assert_equal_with_diff( ["Notes are too long (maximum is 5,000,000 characters)"], @library.errors.full_messages )
+        assert_equal_with_diff(["Notes are too long (maximum is 5,000,000 characters)"], @library.errors.full_messages)
       end
 
       should "singularize the errors if requested" do
-        @library.description = "a" * ( LargeTextField::MAX_LENGTH + 1 )
+        @library.description = "a" * (LargeTextField::MAX_LENGTH + 1)
         assert !@library.valid?
-        assert_equal_with_diff( ["Description is too long (maximum is 5,000,000 characters)"], @library.errors.full_messages )
+        assert_equal_with_diff(["Description is too long (maximum is 5,000,000 characters)"], @library.errors.full_messages)
       end
 
       should "allow a custom maximum length to be provided" do
-        @library.catalog = "1" *501
+        @library.catalog = "1" * 501
         assert_equal false, @library.valid?
-        assert_equal_with_diff [ "Catalog is too long (maximum is 500 characters)" ], @library.errors.full_messages
+        assert_equal_with_diff ["Catalog is too long (maximum is 500 characters)"], @library.errors.full_messages
       end
 
       should "prevent a non-Fixnum to be provided for a custom maximum" do
         assert_raise(ArgumentError, /maximum must be a number/) do
-          Library.large_text_field :not_number_maximum, :maximum => "i am not a number"
+          Library.large_text_field :not_number_maximum, maximum: "i am not a number"
         end
       end
 
       should "prevent a custom maximum length to be provided that is not in the allowable range" do
         assert_raise ArgumentError, /maximum can't be greater than 5,000,000/ do
-          Library.large_text_field :bigger_than_allowed, :maximum => LargeTextField::MAX_LENGTH + 1
+          Library.large_text_field :bigger_than_allowed, maximum: LargeTextField::MAX_LENGTH + 1
         end
 
         assert_raise ArgumentError, /maximum can't be less than 0/ do
-          Library.large_text_field :smaller_than_allowed, :maximum => -1
+          Library.large_text_field :smaller_than_allowed, maximum: -1
         end
       end
 
@@ -162,12 +161,12 @@ module LargeTextField
         assert_equal 0, @library.large_text_fields.count
 
         @library.description = "first"
-        @library.notes  = ""
+        @library.notes = ""
 
         @library.save!
         @library.reload
 
-        assert_equal "first",  @library.description
+        assert_equal "first", @library.description
         assert_equal "", @library.notes
 
         assert_equal 1, @library.large_text_fields.count
@@ -181,7 +180,7 @@ module LargeTextField
         @library.save!
         @library.reload
 
-        assert_equal "first",  @library.description
+        assert_equal "first", @library.description
 
         assert_equal 1, @library.large_text_fields.count
 
@@ -189,7 +188,7 @@ module LargeTextField
         @library.save!
         @library.reload
 
-        assert_equal "",  @library.description
+        assert_equal "", @library.description
 
         assert_equal 0, @library.large_text_fields.count
       end
@@ -201,14 +200,14 @@ module LargeTextField
 
         @library.save!
 
-        assert_equal "first",  @library.description
+        assert_equal "first", @library.description
 
         assert_equal 1, @library.large_text_fields.count
 
         @library.description = ""
         @library.save!
 
-        assert_equal "",  @library.description
+        assert_equal "", @library.description
 
         assert_equal 0, @library.large_text_fields.count
         @library.description = "first"
@@ -216,9 +215,7 @@ module LargeTextField
         @library.save!
 
         assert_equal "first",  @library.description
-
       end
-
 
       should "be cloned with the rest of the record" do
         @library.description = "first"
@@ -243,7 +240,7 @@ module LargeTextField
         # should be destroyed when destroyed
         text_field_ids = @clone.large_text_fields.*.id
         @clone.destroy
-        text_field_ids.each { |id| assert !LargeTextField::NamedTextValue.find_by_id( id ) }
+        text_field_ids.each { |id| assert !LargeTextField::NamedTextValue.find_by_id(id) }
       end
 
       should "be able to be eager loaded" do
@@ -251,20 +248,20 @@ module LargeTextField
         @library.catalog = "second"
         @library.save!
 
-        new_value = Library.find(@library.id,:include=>:large_text_fields)
+        new_value = Library.find(@library.id, include: :large_text_fields)
 
-        dont_allow(Library::connection).select
+        dont_allow(Library.connection).select
         assert_equal "first",  new_value.description
         assert_equal "second", new_value.catalog
       end
 
       should "support strings or symbols for get/set methods" do
-        @library.set_text_field( :description, "first" )
+        @library.set_text_field(:description, "first")
         assert_equal "first",  @library.description
         assert_equal "first",  @library.get_text_field(:description)
         assert_equal "first",  @library.get_text_field('description')
 
-        @library.set_text_field( 'description', "second" )
+        @library.set_text_field('description', "second")
         assert_equal "second",  @library.description
         assert_equal "second",  @library.get_text_field(:description)
         assert_equal "second",  @library.get_text_field('description')
@@ -273,7 +270,7 @@ module LargeTextField
       should "detect changes when @text_field_hash hash is/not empty" do
         @library = Library.new(name: "Smithsonian")
 
-        assert !@library.instance_variable_defined?( "@text_field_hash" )
+        assert !@library.instance_variable_defined?("@text_field_hash")
         assert !@library.description_changed?
         @library.description = "a new note"
         assert @library.description_changed?
@@ -287,9 +284,9 @@ module LargeTextField
 
       should "only validate_large_text_fields if loaded" do
         @library = Library.new
-        assert !@library.instance_variable_defined?( "@text_field_hash" )
+        assert !@library.instance_variable_defined?("@text_field_hash")
         assert @library.valid?
-        assert !@library.instance_variable_defined?( "@text_field_hash" )
+        assert !@library.instance_variable_defined?("@text_field_hash")
       end
 
       should "reload changes when they come from a different model" do

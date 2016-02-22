@@ -15,7 +15,7 @@ class Library < ActiveRecord::Base
 
   def save_preprocess
     if self.class.default_notes
-      self.notes = self.class.default_notes == :nil ? nil :self.class.default_notes
+      self.notes = self.class.default_notes == :nil ? nil : self.class.default_notes
     end
   end
 

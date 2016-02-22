@@ -22,8 +22,9 @@ module Test
       end
 
       private
+
       def original_raise(*args, &block)
-        assert_expected_exception = Proc.new do |*_args|
+        assert_expected_exception = proc do |*_args|
           message, assert_exception_helper, actual_exception = _args
           expected = assert_exception_helper.expected_exceptions
           diff = AssertionMessage.delayed_diff(expected, actual_exception)
@@ -34,7 +35,7 @@ module Test
           begin
             assert_block(full_message) do
               expected == [] or
-                assert_exception_helper.expected?(actual_exception)
+              assert_exception_helper.expected?(actual_exception)
             end
           rescue AssertionFailedError => failure
             _set_failed_information(failure, expected, actual_exception,
