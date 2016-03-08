@@ -16,7 +16,8 @@ module LargeTextField
     def dup
       result = super
 
-      result.send(:remove_instance_variable, :@text_field_hash)
+      result._clear_text_field_on_dup
+
       large_text_field_options.keys.each { |k| result.set_text_field(k, get_text_field(k)) }
 
       result
@@ -73,6 +74,12 @@ module LargeTextField
       @text_field_hash = text_field_hash.compact.select { |_k, v| v.value.presence }
       self.large_text_fields = text_field_hash.values.compact
       true
+    end
+
+    def _clear_text_field_on_dup
+      if instance_variable_defined?(:@text_field_hash)
+        remove_instance_variable(:@text_field_hash)
+      end
     end
 
     module ClassMethods

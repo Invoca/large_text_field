@@ -14,5 +14,10 @@ module LargeTextField
       l = Library.find(l.id)
       assert_equal large_description, l.description
     end
+
+    should "be able to dup a class that has no current large text field" do
+      l = Library.new(name: "Alexandria Public Library")
+      l.dup
+    end
   end
 end
