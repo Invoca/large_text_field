@@ -16,7 +16,9 @@ gem "jquery-rails"
 # To use debugger
 # gem 'debugger'
 
-gem 'hobo_support', '2.0.1', git: 'git@github.com:Invoca/hobosupport'
+gem 'hobo_support', '2.0.1', git: 'git@github.com:Invoca/hobosupport', ref: 'ca34a7186622d6360491d8d2bc2e0d02ec7217f7'
+gem 'rails', '~> 4.0.13', github: 'Invoca/rails', ref: '3df0ead5e6e5c0339a5b60af0c2291f0053e0991'
+gem 'protected_attributes', '1.1.3'
 
 group :test do
   gem 'test-unit', '3.1.3'
