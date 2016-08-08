@@ -1,3 +1,5 @@
+require "protected_attributes"
+
 module LargeTextField
   class NamedTextValue < ActiveRecord::Base
     # Schema

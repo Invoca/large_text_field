@@ -53,6 +53,7 @@ PATH
   specs:
     large_text_field (0.0.2)
       hobo_support (= 2.0.1)
+      protected_attributes
       rails (~> 4.0.13)
 
 GEM
