@@ -1,5 +1,3 @@
-require "protected_attributes"
-
 module LargeTextField
   class NamedTextValue < ActiveRecord::Base
     # Schema
@@ -7,8 +5,6 @@ module LargeTextField
     #   value      :text, :null=>true, :limit => MYSQL_MEDIUM_TEXT_UTF8_LIMIT
     #
     # index [ :owner_type, :owner_id, :field_name ], :name => 'large_text_field_by_owner_field', :unique=>true
-
-    attr_accessible :field_name, :value, :owner_type, :owner_id, :owner
 
     belongs_to :owner, polymorphic: true, inverse_of: :large_text_fields
 
