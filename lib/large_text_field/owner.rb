@@ -49,7 +49,7 @@ module LargeTextField
       if (field = text_field_hash[field_name])
         field.value = value
       else
-        text_field_hash[field_name] = LargeTextField::NamedTextValue.new({owner: self, field_name: field_name, value: value}, without_protection: true)
+        text_field_hash[field_name] = LargeTextField::NamedTextValue.new(owner: self, field_name: field_name, value: value)
       end
     end
 
