@@ -1,10 +1,10 @@
 GIT
   remote: git@github.com:Invoca/hobosupport
-  revision: ca34a7186622d6360491d8d2bc2e0d02ec7217f7
-  ref: ca34a7186622d6360491d8d2bc2e0d02ec7217f7
+  revision: 38006a80d32c594ff765951c4c0552c574b8d9cf
+  ref: 38006a80d32c594ff765951c4c0552c574b8d9cf
   specs:
     hobo_support (2.0.1)
-      rails (~> 4.0.13)
+      rails (~> 4.0)
 
 PATH
   remote: .
@@ -12,7 +12,7 @@ PATH
     large_text_field (0.0.2)
       hobo_support (= 2.0.1)
       protected_attributes
-      rails (~> 4.0.13)
+      rails (~> 4.0)
 
 GEM
   remote: https://rubygems.org/

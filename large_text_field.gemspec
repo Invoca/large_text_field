@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "protected_attributes"
-  s.add_dependency "rails",        "~> 4.0.13"
+  s.add_dependency "rails",        "~> 4.0"
   s.add_dependency "hobo_support", "2.0.1"
 
   s.add_development_dependency "invoca-utils", "0.0.2"
