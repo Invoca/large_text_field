@@ -28,6 +28,12 @@ Bundler::GemHelper.install_tasks
 require 'rake/testtask'
 require 'rubocop/rake_task'
 
+namespace :db do
+  task :migrate => [:environment] do |t|
+    system("bundle exec rake db:setup RAILS_ENV='test'")
+  end
+end
+
 Rake::TestTask.new(:test) do |t|
   t.libs << 'lib'
   t.libs << 'test'

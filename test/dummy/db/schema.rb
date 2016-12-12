@@ -9,19 +9,21 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_160_217_033_529) do
+ActiveRecord::Schema.define(version: 20160217033529) do
+
   create_table "large_text_fields", force: true do |t|
-    t.string  "field_name", null: false
-    t.text    "value", limit: 16_777_215
-    t.integer "owner_id",                       null: false
-    t.string  "owner_type",                     null: false
+    t.string  "field_name",                  null: false
+    t.text    "value",      limit: 16777215
+    t.integer "owner_id",                    null: false
+    t.string  "owner_type",                  null: false
   end
 
-  add_index "large_text_fields", %w(owner_type owner_id field_name), name: "large_text_field_by_owner_field", unique: true
+  add_index "large_text_fields", ["owner_type", "owner_id", "field_name"], name: "large_text_field_by_owner_field", unique: true
 
   create_table "libraries", force: true do |t|
     t.string "name", null: false
   end
+
 end
