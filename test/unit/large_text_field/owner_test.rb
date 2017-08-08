@@ -140,7 +140,7 @@ module LargeTextField
         assert_equal ["Catalog is too long (maximum is 500 characters)"], @library.errors.full_messages
       end
 
-      should "prevent a non-Fixnum to be provided for a custom maximum" do
+      should "prevent a non-Integer to be provided for a custom maximum" do
         assert_raise(ArgumentError) do
           Library.large_text_field :not_number_maximum, maximum: "i am not a number"
         end

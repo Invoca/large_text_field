@@ -88,7 +88,7 @@ module LargeTextField
 
         # validate custom maximum
         if maximum
-          if !maximum.is_a? Fixnum
+          if !maximum.is_a? Integer
             raise ArgumentError, "maximum must be a number"
           elsif maximum > MAX_LENGTH
             raise ArgumentError, "maximum can't be greater than #{formatted_integer_value(MAX_LENGTH)}"
