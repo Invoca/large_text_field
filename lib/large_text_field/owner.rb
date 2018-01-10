@@ -33,8 +33,8 @@ module LargeTextField
       @text_field_hash ||= large_text_fields.build_hash { |text_field| [text_field.field_name, text_field] }
     end
 
-    def text_field_hash_loaded
-      @text_field_hash
+    def text_field_hash_loaded?
+      defined?(@text_field_hash) && @text_field_hash.present?
     end
 
     def get_text_field(field_name)
@@ -54,11 +54,11 @@ module LargeTextField
     end
 
     def text_field_changed(field_name)
-      text_field_hash_loaded && @text_field_hash[field_name]._?.changes._?.any?
+      text_field_hash_loaded? && @text_field_hash[field_name]._?.changes._?.any?
     end
 
     def validate_large_text_fields
-      if text_field_hash_loaded
+      if text_field_hash_loaded?
         large_text_field_options.each do |k, options|
           value = text_field_hash[k]._?.value
           conjugation = options[:singularize_errors] ? "is" : "are"

@@ -35,7 +35,7 @@ module LargeTextField
       end
 
       should "declare the association when it is first described and other meta data when it is first defined" do
-        assert_equal :has_many, Library.reflections[:large_text_fields].macro
+        assert_equal :has_many, Library.reflections['large_text_fields'].macro
 
         assert_equal({ maximum: nil, singularize_errors: true }, Library.large_text_field_options['description'])
       end
@@ -248,7 +248,7 @@ module LargeTextField
         @library.catalog = "second"
         @library.save!
 
-        new_value = Library.find(@library.id, include: :large_text_fields)
+        new_value = Library.includes(:large_text_fields).find(@library.id)
 
         dont_allow(Library.connection).select
         assert_equal "first",  new_value.description
