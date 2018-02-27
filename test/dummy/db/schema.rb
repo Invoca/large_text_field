@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20160217033529) do
 
-  create_table "large_text_fields", force: true do |t|
+  create_table "large_text_fields", force: :cascade do |t|
     t.string  "field_name",                  null: false
     t.text    "value",      limit: 16777215
     t.integer "owner_id",                    null: false
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20160217033529) do
 
   add_index "large_text_fields", ["owner_type", "owner_id", "field_name"], name: "large_text_field_by_owner_field", unique: true
 
-  create_table "libraries", force: true do |t|
+  create_table "libraries", force: :cascade do |t|
     t.string "name", null: false
   end
 

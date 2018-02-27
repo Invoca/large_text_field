@@ -35,7 +35,7 @@ module LargeTextField
       end
 
       should "declare the association when it is first described and other meta data when it is first defined" do
-        assert_equal :has_many, Library.reflections[:large_text_fields].macro
+        assert_equal :has_many, Library.reflections['large_text_fields'].macro
 
         assert_equal({ maximum: nil, singularize_errors: true }, Library.large_text_field_options['description'])
       end
@@ -140,7 +140,7 @@ module LargeTextField
         assert_equal ["Catalog is too long (maximum is 500 characters)"], @library.errors.full_messages
       end
 
-      should "prevent a non-Fixnum to be provided for a custom maximum" do
+      should "prevent a non-Integer to be provided for a custom maximum" do
         assert_raise(ArgumentError) do
           Library.large_text_field :not_number_maximum, maximum: "i am not a number"
         end
@@ -248,7 +248,7 @@ module LargeTextField
         @library.catalog = "second"
         @library.save!
 
-        new_value = Library.find(@library.id, include: :large_text_fields)
+        new_value = Library.includes(:large_text_fields).find(@library.id)
 
         dont_allow(Library.connection).select
         assert_equal "first",  new_value.description
