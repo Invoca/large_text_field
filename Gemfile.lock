@@ -1,7 +1,7 @@
 GIT
   remote: git@github.com:Invoca/hobosupport
-  revision: 439111b196472b3e24fc303585dc229462ef7937
-  ref: 439111b196472b3e24fc303585dc229462ef7937
+  revision: b9086322274b474a2b5bae507c4885e55d4aa050
+  ref: b9086322274b474a2b5bae507c4885e55d4aa050
   specs:
     hobo_support (2.0.1)
       rails (~> 4.2.10)
