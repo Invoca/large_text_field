@@ -1,3 +1,5 @@
+require "rails"
+
 require "large_text_field/engine"
 require "large_text_field/owner"
 require "large_text_field/named_text_value"
