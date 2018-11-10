@@ -9,10 +9,10 @@ GIT
 PATH
   remote: .
   specs:
-    large_text_field (0.0.2)
+    large_text_field (0.1.0)
       hobo_support (= 2.0.1)
       protected_attributes
-      rails (~> 4.2.10)
+      rails (~> 4.2)
 
 GEM
   remote: https://rubygems.org/
