@@ -28,6 +28,24 @@ module LargeTextField
       end
     end
 
+    context "large_text_field_destroy callback" do
+      should "be triggered when destroying the owner" do
+        library = Library.create!(name: "Smithsonian", description: "description")
+        assert_not library.large_text_field_destroyed
+
+        library.destroy
+
+        assert library.large_text_field_destroyed
+      end
+
+      should "allow for loading of large text field values before they are destroyed" do
+        library = Library.create!(name: "Smithsonian", description: "description")
+        assert_not library.before_destroy_description
+        library.destroy
+        assert_equal "description", library.before_destroy_description
+      end
+    end
+
     context "a large text field" do
       setup do
         @library = Library.create!(name: "Smithsonian")

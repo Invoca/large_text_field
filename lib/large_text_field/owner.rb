@@ -4,10 +4,11 @@ module LargeTextField
     include ActiveSupport::Callbacks
 
     included do
+      before_destroy   ->() { run_callbacks(:large_text_field_destroy) }
       has_many         :large_text_fields, class_name: "LargeTextField::NamedTextValue", as: :owner, autosave: true, dependent: :destroy, inverse_of: :owner
       validate         :validate_large_text_fields
       before_save      :write_large_text_field_changes
-      define_callbacks :large_text_field_save
+      define_callbacks :large_text_field_save, :large_text_field_destroy
 
       class_attribute :large_text_field_options
       self.large_text_field_options = {}
