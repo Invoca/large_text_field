@@ -1,4 +1,5 @@
 require "hobo_support"
+require "protected_attributes"
 
 require "rails"
 

@@ -8,8 +8,6 @@ gem "jquery-rails"
 # To use debugger
 # gem 'debugger'
 
-gem 'protected_attributes', '1.1.3'
-
 group :test do
   gem 'minitest',  '~> 5.1'
   gem 'pry'
