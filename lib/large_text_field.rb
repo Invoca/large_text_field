@@ -1,3 +1,5 @@
+require "hobo_support"
+
 require "rails"
 
 require "large_text_field/engine"
