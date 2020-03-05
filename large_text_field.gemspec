@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.summary     = "Add large text fields to models without database migrations"
   s.description = "Large text fields are kept in a central table, and polymorphically associated with your models.  Access and assignemnt should behave as if it was a column on the same table."
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile"]
+  s.files = Dir["{db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "protected_attributes", "~> 1.1"
