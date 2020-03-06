@@ -1,3 +1,3 @@
 module LargeTextField
-  VERSION = "0.3.0.pre.1"
+  VERSION = "0.3.0"
 end
