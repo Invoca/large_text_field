@@ -1,17 +1,9 @@
-GIT
-  remote: git@github.com:Invoca/hobosupport
-  revision: b9086322274b474a2b5bae507c4885e55d4aa050
-  ref: b9086322274b474a2b5bae507c4885e55d4aa050
-  specs:
-    hobo_support (2.0.1)
-      rails (~> 4.2.10)
-
 PATH
   remote: .
   specs:
-    large_text_field (0.1.0)
-      hobo_support (= 2.0.1)
-      protected_attributes
+    large_text_field (0.3.0.pre.1)
+      hobo_support (~> 2.2)
+      protected_attributes (~> 1.1)
       rails (~> 4.2)
 
 GEM
@@ -58,8 +50,10 @@ GEM
     concurrent-ruby (1.0.5)
     crass (1.0.3)
     erubis (2.7.0)
-    globalid (0.4.1)
+    globalid (0.4.2)
       activesupport (>= 4.2.0)
+    hobo_support (2.2.6)
+      rails (~> 4.2.6)
     i18n (0.9.1)
       concurrent-ruby (~> 1.0)
     invoca-utils (0.0.2)
@@ -70,10 +64,10 @@ GEM
     loofah (2.1.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
-    mail (2.7.0)
+    mail (2.7.1)
       mini_mime (>= 0.1.1)
     method_source (0.9.0)
-    mini_mime (1.0.0)
+    mini_mime (1.0.2)
     mini_portile2 (2.3.0)
     minitest (5.11.1)
     nokogiri (1.8.1)
@@ -83,7 +77,7 @@ GEM
       ast (~> 2.3)
     power_assert (1.1.1)
     powerpack (0.1.1)
-    protected_attributes (1.1.3)
+    protected_attributes (1.1.4)
       activemodel (>= 4.0.1, < 5.0)
     pry (0.11.3)
       coderay (~> 1.1.0)
@@ -132,7 +126,7 @@ GEM
     shoulda-context (1.2.2)
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
-    sprockets (3.7.1)
+    sprockets (3.7.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
     sprockets-rails (3.2.1)
@@ -152,12 +146,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  hobo_support (= 2.0.1)!
   invoca-utils (= 0.0.2)
   jquery-rails
   large_text_field!
   minitest (~> 5.1)
-  protected_attributes (= 1.1.3)
   pry
   rr (= 1.1.2)
   rubocop
@@ -166,4 +158,4 @@ DEPENDENCIES
   test-unit (= 3.1.3)
 
 BUNDLED WITH
-   1.16.1
+   1.17.2
