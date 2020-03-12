@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     large_text_field (0.3.0)
-      hobo_support (~> 2.2)
+      hobo_support (~> 2.0)
       protected_attributes (~> 1.1)
       rails (~> 4.2)
 
