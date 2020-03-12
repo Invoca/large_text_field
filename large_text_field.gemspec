@@ -20,5 +20,5 @@ Gem::Specification.new do |s|
 
   s.add_dependency "protected_attributes", "~> 1.1"
   s.add_dependency "rails",        "~> 4.2"
-  s.add_dependency "hobo_support", "~> 2.2"
+  s.add_dependency "hobo_support", "~> 2.0"
 end
