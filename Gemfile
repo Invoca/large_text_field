@@ -10,6 +10,7 @@ gem "jquery-rails"
 
 group :test do
   gem 'minitest',  '~> 5.1'
+  gem 'minitest-reporters'
   gem 'pry'
   gem 'rr',        '1.1.2'
   gem 'shoulda',   '3.5.0'

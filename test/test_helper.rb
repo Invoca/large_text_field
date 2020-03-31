@@ -6,6 +6,12 @@ require "invoca/utils"
 require "rr"
 require "shoulda"
 require "minitest/unit"
+require 'minitest/reporters'
+Minitest::Reporters.use! [
+  Minitest::Reporters::DefaultReporter.new,
+  Minitest::Reporters::JUnitReporter.new
+]
+
 require "pry"
 
 def large_description
