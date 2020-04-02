@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddLargeTextFields < ActiveRecord::Migration
 
   def self.up
@@ -7,7 +9,7 @@ class AddLargeTextFields < ActiveRecord::Migration
       t.integer :owner_id, null: false
       t.string  :owner_type, null: false
     end
-    add_index :large_text_fields, [:owner_type, :owner_id, :field_name], unique: true, name: 'large_text_field_by_owner_field'
+    add_index :large_text_fields, %i[owner_type owner_id field_name], unique: true, name: 'large_text_field_by_owner_field'
   end
 
   def self.down

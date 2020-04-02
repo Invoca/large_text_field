@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "protected_attributes"
 
 module LargeTextField

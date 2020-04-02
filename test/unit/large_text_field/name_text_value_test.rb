@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module LargeTextField
   class NamedTextValueTest < ActiveSupport::TestCase
     should belong_to(:owner)
