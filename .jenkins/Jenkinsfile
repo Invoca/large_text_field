@@ -17,6 +17,7 @@ pipeline {
   stages {
     stage('Setup') {
       steps {
+        updateGitHubStatus('clean-build', 'pending', 'Unit tests.')
         script {
           sh 'bundle install'
         }
