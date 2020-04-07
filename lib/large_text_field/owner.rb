@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module LargeTextField
   module Owner
     extend ActiveSupport::Concern
@@ -92,7 +94,7 @@ module LargeTextField
             raise ArgumentError, "maximum must be a number"
           elsif maximum > MAX_LENGTH
             raise ArgumentError, "maximum can't be greater than #{formatted_integer_value(MAX_LENGTH)}"
-          elsif maximum < 0
+          elsif maximum.negative?
             raise ArgumentError, "maximum can't be less than 0"
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 module LargeTextField
@@ -5,26 +7,22 @@ module LargeTextField
     context "updating in large_text_field_save hook" do
       { 'empty string' => '', 'non empty string' => 'this is some text' }.each do |name, value|
         should "be able to assign #{name}" do
-          begin
-            Library.default_notes = value
-            @library = Library.create!(name: "Smithsonian")
-            assert_equal value, @library.notes
-            assert_equal value, @library.reload.notes
-          ensure
-            Library.default_notes = "none_set"
-          end
+          Library.default_notes = value
+          @library = Library.create!(name: "Smithsonian")
+          assert_equal value, @library.notes
+          assert_equal value, @library.reload.notes
+        ensure
+          Library.default_notes = "none_set"
         end
       end
 
       should "raise error on saving nil value" do
-        begin
-          Library.default_notes = :nil
-          assert_raises RuntimeError do
-            @library = Library.create!(name: "Smithsonian")
-          end
-        ensure
-          Library.default_notes = "none_set"
+        Library.default_notes = :nil
+        assert_raises RuntimeError do
+          @library = Library.create!(name: "Smithsonian")
         end
+      ensure
+        Library.default_notes = "none_set"
       end
     end
 
@@ -300,7 +298,7 @@ module LargeTextField
         assert_equal "The main research library of the University of Cambridge in England", @library.reload.description
       end
 
-      should "delete large text fields when the owner is destroyed"do
+      should "delete large text fields when the owner is destroyed" do
         assert_equal 0, LargeTextField::NamedTextValue.count
 
         @library = Library.create!(name: "Cambridge University Library", description: "in england")

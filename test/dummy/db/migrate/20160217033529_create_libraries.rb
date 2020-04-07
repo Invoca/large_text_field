@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateLibraries < ActiveRecord::Migration
   def self.up
     create_table :libraries do |t|

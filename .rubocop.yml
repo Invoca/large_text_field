@@ -9,7 +9,19 @@ AllCops:
 # Configure cops for styles that we do not adhere to or are not agreed upon
 # Default settings and options can be viewed here: https://raw.githubusercontent.com/bbatsov/rubocop/master/config/default.yml
 # Please add new configurations in alphabetical order
-Metrics/LineLength:
+Layout/LineLength:
+  Enabled: false
+
+Layout/EmptyLinesAroundClassBody:
+  Enabled: false
+
+Layout/EndOfLine:
+  Enabled: false
+
+Layout/SpaceBeforeFirstArg:
+  Enabled: false
+
+Lint/EmptyInterpolation:
   Enabled: false
 
 Style/AndOr:
@@ -21,15 +33,6 @@ Style/ClassAndModuleChildren:
 Style/Documentation:
   Enabled: false
 
-Lint/EmptyInterpolation:
-  Enabled: false
-
-Style/EmptyLinesAroundClassBody:
-  Enabled: false
-
-Style/EndOfLine:
-  Enabled: false
-
 Style/GuardClause:
   Enabled: false
 
@@ -39,17 +42,23 @@ Style/IfUnlessModifier:
 Style/SignalException:
   Enabled: false
 
-Style/SingleSpaceBeforeFirstArg:
-  Enabled: false
-
 Style/StringLiterals:
   Enabled: false
 
 Metrics/AbcSize:
   Max: 20
 
+Metrics/BlockLength:
+  Exclude:
+    - 'Rakefile'
+    - '**/*.rake'
+    - '**/*_test.rb'
+
 Metrics/MethodLength:
   Max: 30
 
 Metrics/ClassLength:
   Max: 300
+
+Naming/HeredocDelimiterNaming:
+  Enabled: false

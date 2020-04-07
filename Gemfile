@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 
 gemspec
@@ -9,7 +11,8 @@ gem "jquery-rails"
 # gem 'debugger'
 
 group :test do
-  gem 'minitest',  '~> 5.1'
+  gem 'minitest', '~> 5.1'
+  gem 'minitest-reporters'
   gem 'pry'
   gem 'rr',        '1.1.2'
   gem 'shoulda',   '3.5.0'
@@ -17,7 +20,7 @@ group :test do
 end
 
 group :development do
-  gem 'rubocop', require: false
   gem 'invoca-utils', '0.0.2'
+  gem 'rubocop', require: false
   gem 'sqlite3'
 end

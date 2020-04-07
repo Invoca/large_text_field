@@ -1,4 +1,6 @@
 #!/usr/bin/env rake
+# frozen_string_literal: true
+
 begin
   require 'bundler/setup'
 rescue LoadError
@@ -23,14 +25,14 @@ RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
-APP_RAKEFILE = File.expand_path("../test/dummy/Rakefile", __FILE__)
+APP_RAKEFILE = File.expand_path('test/dummy/Rakefile', __dir__)
 load 'rails/tasks/engine.rake'
 
 require 'rake/testtask'
 require 'rubocop/rake_task'
 
 namespace :db do
-  task :migrate => [:environment] do |t|
+  task migrate: [:environment] do |_t|
     system("bundle exec rake db:setup RAILS_ENV='test'")
   end
 end
@@ -42,7 +44,7 @@ Rake::TestTask.new(:test) do |t|
   t.verbose = false
 end
 
-task default: [:test, :rubocop]
+task default: %i[test rubocop]
 
 desc 'Run rubocop'
 task :rubocop do

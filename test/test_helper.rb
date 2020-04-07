@@ -1,11 +1,19 @@
+# frozen_string_literal: true
+
 ENV["RAILS_ENV"] = "test"
 
-require File.expand_path("../dummy/config/environment.rb", __FILE__)
+require File.expand_path('dummy/config/environment.rb', __dir__)
 require "rails/test_help"
 require "invoca/utils"
 require "rr"
 require "shoulda"
 require "minitest/unit"
+require 'minitest/reporters'
+Minitest::Reporters.use! [
+  Minitest::Reporters::DefaultReporter.new,
+  Minitest::Reporters::JUnitReporter.new
+]
+
 require "pry"
 
 def large_description
