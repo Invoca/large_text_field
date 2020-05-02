@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.files = Dir["{db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["test/**/*"]
 
-  s.add_dependency "hobo_support", "~> 2.0"
   s.add_dependency "protected_attributes", "~> 1.1"
   s.add_dependency "rails", "~> 4.2"
+  s.add_dependency "invoca-utils", "~> 0.3"
 end

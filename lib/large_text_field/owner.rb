@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "invoca/utils"
+
 module LargeTextField
   module Owner
     extend ActiveSupport::Concern
@@ -40,7 +42,7 @@ module LargeTextField
     end
 
     def get_text_field(field_name)
-      text_field_hash[field_name.to_s]._?.value || ''
+      text_field_hash[field_name.to_s]&.value || ''
     end
 
     def set_text_field(original_field_name, original_value)
@@ -56,13 +58,13 @@ module LargeTextField
     end
 
     def text_field_changed(field_name)
-      text_field_hash_loaded? && @text_field_hash[field_name]._?.changes._?.any?
+      text_field_hash_loaded? && @text_field_hash[field_name]&.changes&.any?
     end
 
     def validate_large_text_fields
       if text_field_hash_loaded?
         large_text_field_options.each do |k, options|
-          value = text_field_hash[k]._?.value
+          value = text_field_hash[k]&.value
           conjugation = options[:singularize_errors] ? "is" : "are"
           maximum = options[:maximum] || MAX_LENGTH
           errors.add k, "#{conjugation} too long (maximum is #{self.class.formatted_integer_value(maximum)} characters)" if value.present? && value.size > maximum

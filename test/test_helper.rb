@@ -4,7 +4,6 @@ ENV["RAILS_ENV"] = "test"
 
 require File.expand_path('dummy/config/environment.rb', __dir__)
 require "rails/test_help"
-require "invoca/utils"
 require "rr"
 require "shoulda"
 require "minitest/unit"

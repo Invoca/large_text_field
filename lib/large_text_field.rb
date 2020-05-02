@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require "hobo_support"
 require "protected_attributes"
 
 require "rails"

@@ -20,7 +20,6 @@ group :test do
 end
 
 group :development do
-  gem 'invoca-utils', '0.0.2'
   gem 'rubocop', require: false
   gem 'sqlite3'
 end
