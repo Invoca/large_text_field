@@ -9,11 +9,11 @@ require "large_text_field/version"
 Gem::Specification.new do |s|
   s.name        = "large_text_field"
   s.version     = LargeTextField::VERSION
-  s.authors     = ["Bob Smith"]
-  s.email       = ["bob@invoca.com"]
+  s.authors     = ["Invoca"]
+  s.email       = ["development@invoca.com"]
   s.homepage    = "http://github.com/invoca"
   s.summary     = "Add large text fields to models without database migrations"
-  s.description = "Large text fields are kept in a central table, and polymorphically associated with your models.  Access and assignemnt should behave as if it was a column on the same table."
+  s.description = "Large text fields are kept in a central table, and polymorphically associated with your models.  Access and assignment should behave as if it was a column on the same table."
 
   s.metadata['allowed_push_host'] = "https://rubygems.org"
 
