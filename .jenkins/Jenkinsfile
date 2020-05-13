@@ -83,11 +83,11 @@ pipeline {
           post { always { junit 'test/reports/rails-6/*.xml' } }
         }
       }
-    }
 
-    post {
-      success { updateGitHubStatus('clean-build', 'success', 'Unit tests.') }
-      failure { updateGitHubStatus('clean-build', 'failure', 'Unit tests.') }
+      post {
+        success { updateGitHubStatus('clean-build', 'success', 'Unit tests.') }
+        failure { updateGitHubStatus('clean-build', 'failure', 'Unit tests.') }
+      }
     }
   }
 }
