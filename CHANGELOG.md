@@ -9,7 +9,7 @@ Note: This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0
 - Added support for rails 5 and 6.
 - Added appraisal tests for all supported rails version: 4/5/6
 
-## Removed
+### Removed
 - Support for `protected_parameters` has been removed
 
 ## [0.3.2] - 2020-05-03
