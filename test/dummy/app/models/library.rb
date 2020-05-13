@@ -5,7 +5,6 @@ class Library < ActiveRecord::Base
 
   # Schema
   #   name :string, :limit => 255
-  attr_accessible  :name, :description, :catalog, :notes
 
   large_text_field :description, singularize_errors: true
   large_text_field :catalog, maximum: 500, singularize_errors: true
