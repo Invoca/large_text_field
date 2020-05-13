@@ -35,7 +35,7 @@ pipeline {
 
           steps {
             sh 'bundle exec rake db:setup RAILS_ENV=test'
-            sh 'bundle exec rake'
+            sh 'bundle exec rake test'
           }
 
           post { always { junit 'test/reports/current/*.xml' } }
@@ -49,7 +49,7 @@ pipeline {
 
           steps {
             sh 'bundle exec rake db:setup RAILS_ENV=test'
-            sh 'bundle exec appraisal rails-4 rake'
+            sh 'bundle exec appraisal rails-4 rake test'
           }
 
           post { always { junit 'test/reports/rails-4/*.xml' } }
@@ -63,7 +63,7 @@ pipeline {
 
           steps {
             sh 'bundle exec rake db:setup RAILS_ENV=test'
-            sh 'bundle exec appraisal rails-5 rake'
+            sh 'bundle exec appraisal rails-5 rake test'
           }
 
           post { always { junit 'test/reports/rails-5/*.xml' } }
@@ -77,7 +77,7 @@ pipeline {
 
           steps {
             sh 'bundle exec rake db:setup RAILS_ENV=test'
-            sh 'bundle exec appraisal rails-6 rake'
+            sh 'bundle exec appraisal rails-6 rake test'
           }
 
           post { always { junit 'test/reports/rails-6/*.xml' } }
