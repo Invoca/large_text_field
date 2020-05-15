@@ -4,7 +4,7 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 Note: This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.0] - Unreleased
+## [1.0.0] - 2020-05-15
 ### Added
 - Added support for rails 5 and 6.
 - Added appraisal tests for all supported rails version: 4/5/6
@@ -17,4 +17,5 @@ Note: This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0
 - Replaced dependence on hobo_support with invoca_utils
 - Make invoca_utils a declared dependency. (It always was, it just wasn't declared)
 
-[0.3.2]: https://github.com/Invoca/large_text_field/compare/v0.3.2...v0.3.1
+[1.0.0]: https://github.com/Invoca/large_text_field/compary/v0.3.2...v1.0.0
+[0.3.2]: https://github.com/Invoca/large_text_field/compare/v0.3.1...v0.3.2
