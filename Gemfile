@@ -13,6 +13,7 @@ gem 'appraisal'
 gem 'minitest', '~> 5.1'
 gem 'minitest-reporters'
 gem 'pry'
+gem 'rails',     '< 6.1'
 gem 'rr',        '~> 1.1'
 gem 'rubocop', require: false
 gem 'shoulda',   '~> 3.5'

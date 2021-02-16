@@ -10,5 +10,5 @@ appraise 'rails-5' do
 end
 
 appraise 'rails-6' do
-  gem 'rails', '~> 6.0'
+  gem 'rails', '~> 6.0', '< 6.1'
 end

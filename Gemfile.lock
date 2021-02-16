@@ -159,6 +159,7 @@ DEPENDENCIES
   minitest (~> 5.1)
   minitest-reporters
   pry
+  rails (< 6.1)
   rr (~> 1.1)
   rubocop
   shoulda (~> 3.5)
