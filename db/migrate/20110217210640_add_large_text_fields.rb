@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class AddLargeTextFields < ActiveRecord::Migration
-
+class AddLargeTextFields < (Rails::VERSION::MAJOR >= 5 ? ActiveRecord::Migration[4.2] : ActiveRecord::Migration)
   def self.up
     create_table :large_text_fields do |t|
       t.string  :field_name, null: false
