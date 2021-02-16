@@ -7,6 +7,7 @@ Note: This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0
 ## [1.0.1] - 2021-02-16
 ### Fixed
 - Fixed migration to work with Rails 6 (by adding [4.2] suffix).
+- Set rails version to < 6.1 since that moved some files around and broke requires.
 
 ## [1.0.0] - 2020-05-15
 ### Added
