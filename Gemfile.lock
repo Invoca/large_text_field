@@ -78,6 +78,7 @@ GEM
       builder
       minitest (>= 5.0)
       ruby-progressbar
+    mysql2 (0.4.5)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
     parallel (1.19.1)
@@ -158,6 +159,7 @@ DEPENDENCIES
   large_text_field!
   minitest (~> 5.1)
   minitest-reporters
+  mysql2 (= 0.4.5)
   pry
   rails (< 6.1)
   rr (~> 1.1)

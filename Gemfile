@@ -18,5 +18,12 @@ gem 'rr',        '~> 1.1'
 gem 'rubocop', require: false
 gem 'shoulda',   '~> 3.5'
 gem 'shoulda-matchers', '~> 2.0'
-gem 'sqlite3'
 gem 'test-unit', '~> 3.3'
+
+group :development do
+  gem 'sqlite3'
+end
+
+group :ci do
+  gem 'mysql2', "0.4.5"
+end
