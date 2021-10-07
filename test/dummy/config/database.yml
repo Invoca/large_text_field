@@ -12,11 +12,23 @@ development:
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
+<% if ENV["USE_MYSQL_DB"] %>
+test:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: large_text_field_test
+  pool: 5
+  username: <%= ENV['DATABASE_MYSQL_USERNAME'] || 'root' %>
+  password: <%= ENV['DATABASE_MYSQL_PASSWORD'] || '' %>
+  host: <%= ENV['DATABASE_MYSQL_HOST'] || 'localhost' %>
+<% else %>
 test:
   adapter: sqlite3
   database: <%= ENV['TEST_DB'].presence || 'db/test.sqlite3' %>
   pool: 5
   timeout: 5000
+<% end %>
 
 production:
   adapter: sqlite3

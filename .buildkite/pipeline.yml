@@ -1,0 +1,86 @@
+---
+# Constants
+RUBY_VERSION: &RUBY_VERSION 2.6.1
+UNIT_TEST_CONFIG: &UNIT_TEST_CONFIG
+  timeout_in_minutes: 5
+  agents:
+    queue: ruby-mysql
+    ruby: *RUBY_VERSION
+    mysql: 5.7
+db_setup_commands: &db_setup_commands
+  - bundle exec rake db:setup
+bundle_install_commands: &bundle_install_commands
+  - bundle install --without development
+  - bundle exec appraisal install --without development
+common_env: &common_env
+  USE_MYSQL_DB: "true"
+  RAILS_ENV: "test"
+
+# Pipeline Steps
+steps:
+- label: ":rails: Current Unit Tests"
+  <<: *UNIT_TEST_CONFIG
+  env:
+    <<: *common_env
+    JUNIT_OUTPUT: test/reports/current/report.xml
+  commands:
+    - bundle install --without development
+    - *db_setup_commands
+    - bundle exec rake test
+  artifact_paths:
+    - test/reports/current/*.xml
+- label: ":rails: Rails 4 Unit Tests"
+  <<: *UNIT_TEST_CONFIG
+  env:
+    <<: *common_env
+    JUNIT_OUTPUT: test/reports/rails-4/report.xml
+  commands:
+    - *bundle_install_commands
+    - *db_setup_commands
+    - bundle exec appraisal rails-4 rake test
+  artifact_paths:
+    - test/reports/rails-4/*.xml
+- label: ":rails: Rails 5 Unit Tests"
+  <<: *UNIT_TEST_CONFIG
+  env:
+    <<: *common_env
+    JUNIT_OUTPUT: test/reports/rails-5/report.xml
+  commands:
+    - *bundle_install_commands
+    - *db_setup_commands
+    - bundle exec appraisal rails-5 rake test
+  artifact_paths:
+    - test/reports/rails-5/*.xml
+- label: ":rails: Rails 6 Unit Tests"
+  <<: *UNIT_TEST_CONFIG
+  env:
+    <<: *common_env
+    JUNIT_OUTPUT: test/reports/rails-6/report.xml
+  commands:
+    - *bundle_install_commands
+    - *db_setup_commands
+    - bundle exec appraisal rails-6 rake test
+  artifact_paths:
+    - test/reports/rails-6/*.xml
+
+# Test Summary Annotate Plugin
+- wait: ~
+  continue_on_failure: true
+
+- label: Test Summary Annotate
+  timeout_in_minutes: 5
+  agents:
+    queue: ruby
+    ruby: *RUBY_VERSION
+  plugins:
+    - invoca/test-summary#TECH-5520_optional_flag_to_run_native_instead_of_docker:
+        inputs:
+          - label: Current Unit Tests
+            artifact_path: test/reports/current/report.xml
+          - label: Rails 4 Unit Tests
+            artifact_path: test/reports/rails-4/report.xml
+          - label: Rails 5 Unit Tests
+            artifact_path: test/reports/rails-5/report.xml
+          - label: Rails 6 Unit Tests
+            artifact_path: test/reports/rails-6/report.xml
+        run_without_docker: true

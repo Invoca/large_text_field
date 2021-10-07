@@ -9,7 +9,7 @@ require "shoulda"
 require "minitest/unit"
 require 'minitest/reporters'
 
-junit_output_dir = ENV['JUNIT_OUTPUT_DIR'].presence || "test/reports"
+junit_output_dir = ENV['JUNIT_OUTPUT'].presence || "test/reports"
 Minitest::Reporters.use! [
   Minitest::Reporters::DefaultReporter.new,
   Minitest::Reporters::JUnitReporter.new(junit_output_dir)
