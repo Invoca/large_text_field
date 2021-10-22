@@ -4,6 +4,10 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 Note: This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.2] - 2021-10-22
+### Fixed
+- Bug where reload didn't accept an argument even though ActiveRecord::Persistence#reload can.
+
 ## [1.0.1] - 2021-02-16
 ### Fixed
 - Fixed migration to work with Rails 6 (by adding [4.2] suffix).
