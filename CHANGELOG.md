@@ -26,6 +26,8 @@ Note: This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0
 - Replaced dependence on hobo_support with invoca_utils
 - Make invoca_utils a declared dependency. (It always was, it just wasn't declared)
 
+
+[1.0.2]: https://github.com/Invoca/large_text_field/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/Invoca/large_text_field/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/Invoca/large_text_field/compare/v0.3.2...v1.0.0
 [0.3.2]: https://github.com/Invoca/large_text_field/compare/v0.3.1...v0.3.2
