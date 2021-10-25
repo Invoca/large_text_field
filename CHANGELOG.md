@@ -4,6 +4,10 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 Note: This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.2] - 2021-10-22
+### Fixed
+- Bug where reload didn't accept an argument even though ActiveRecord::Persistence#reload can.
+
 ## [1.0.1] - 2021-02-16
 ### Fixed
 - Fixed migration to work with Rails 6 (by adding [4.2] suffix).
@@ -22,6 +26,8 @@ Note: This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0
 - Replaced dependence on hobo_support with invoca_utils
 - Make invoca_utils a declared dependency. (It always was, it just wasn't declared)
 
+
+[1.0.2]: https://github.com/Invoca/large_text_field/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/Invoca/large_text_field/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/Invoca/large_text_field/compare/v0.3.2...v1.0.0
 [0.3.2]: https://github.com/Invoca/large_text_field/compare/v0.3.1...v0.3.2

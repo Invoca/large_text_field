@@ -298,6 +298,10 @@ module LargeTextField
         assert_equal "The main research library of the University of Cambridge in England", @library.reload.description
       end
 
+      should "allow a single argument to be passed into reload" do
+        Library.create!(name: "Cambridge University Library", description: "in england").reload(lock: true)
+      end
+
       should "delete large text fields when the owner is destroyed" do
         assert_equal 0, LargeTextField::NamedTextValue.count
 

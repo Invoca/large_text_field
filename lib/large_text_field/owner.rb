@@ -27,8 +27,8 @@ module LargeTextField
       result
     end
 
-    def reload
-      super
+    def reload(options = nil)
+      super(options)
       @text_field_hash = nil
       self
     end
