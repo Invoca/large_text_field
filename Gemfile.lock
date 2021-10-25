@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    large_text_field (1.0.2.pre.1)
+    large_text_field (1.0.2)
       invoca-utils (~> 0.3)
       rails (>= 4.2, < 7)
 
