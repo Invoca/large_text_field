@@ -44,3 +44,10 @@ def large_description
       of the library then.
   EOF
 end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :minitest
+    with.library :rails
+  end
+end
