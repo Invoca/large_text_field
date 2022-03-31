@@ -7,8 +7,8 @@ characters.  Defining new fields on models does not require a database migration
 central table that is polymorphically associated with the model, but they act like a column on on the same model.
 
 ## Dependencies
-* Ruby >= 2.6
-* Rails >= 4.2, < 7
+* Ruby >= 2.7
+* Rails >= 5.2, < 7
 
 ## How do I use it?
 In you Gemfile add:
