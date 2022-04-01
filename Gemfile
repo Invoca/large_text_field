@@ -10,18 +10,19 @@ gem "jquery-rails"
 # To use debugger
 # gem 'debugger'
 gem 'appraisal'
+gem 'bigdecimal', '~> 1.4' # See https://github.com/ruby/bigdecimal#which-version-should-you-select
 gem 'minitest', '~> 5.1'
 gem 'minitest-reporters'
 gem 'pry'
-gem 'rails',     '< 6.1'
+gem 'rails',     '~> 5.2'
 gem 'rr',        '~> 1.1'
 gem 'rubocop', require: false
 gem 'shoulda',   '~> 3.5'
-gem 'shoulda-matchers', '~> 2.0'
+gem 'shoulda-matchers', '~> 3.0'
 gem 'test-unit', '~> 3.3'
 
 group :development do
-  gem 'sqlite3'
+  gem 'sqlite3', '~> 1.4'
 end
 
 group :ci do
