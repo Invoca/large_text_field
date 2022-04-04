@@ -2,7 +2,17 @@
 
 require File.expand_path('boot', __dir__)
 
-require 'rails/all'
+require 'rails'
+if Rails::VERSION::MAJOR >= 6
+  require 'active_model/railtie'
+  require 'active_record/railtie'
+  require "action_controller/railtie"
+  require "action_mailer/railtie"
+  require "action_view/railtie"
+  require "sprockets/railtie"
+else
+  require 'rails/all'
+end
 
 Bundler.require(*Rails.groups)
 require "large_text_field"
