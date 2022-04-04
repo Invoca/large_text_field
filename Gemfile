@@ -20,11 +20,4 @@ gem 'rubocop', require: false
 gem 'shoulda',   '~> 3.5'
 gem 'shoulda-matchers', '~> 3.0'
 gem 'test-unit', '~> 3.3'
-
-group :development do
-  gem 'sqlite3', '~> 1.4'
-end
-
-group :ci do
-  gem 'mysql2', "0.4.5"
-end
+gem 'mysql2'

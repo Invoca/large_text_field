@@ -86,7 +86,7 @@ GEM
       builder
       minitest (>= 5.0)
       ruby-progressbar
-    mysql2 (0.4.5)
+    mysql2 (0.5.3)
     nio4r (2.5.8)
     nokogiri (1.13.3)
       mini_portile2 (~> 2.8.0)
@@ -156,7 +156,6 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    sqlite3 (1.4.2)
     test-unit (3.5.3)
       power_assert
     thor (1.2.1)
@@ -178,14 +177,13 @@ DEPENDENCIES
   large_text_field!
   minitest (~> 5.1)
   minitest-reporters
-  mysql2 (= 0.4.5)
+  mysql2
   pry
   rails (~> 5.2)
   rr (~> 1.1)
   rubocop
   shoulda (~> 3.5)
   shoulda-matchers (~> 3.0)
-  sqlite3 (~> 1.4)
   test-unit (~> 3.3)
 
 BUNDLED WITH
