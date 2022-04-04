@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 require 'rubygems'
-gemfile = File.expand_path('../../../Gemfile', __dir__)
+ENV['BUNDLE_GEMFILE'] ||= 'Gemfile'
+gemfile = File.expand_path("../../../#{ENV['BUNDLE_GEMFILE']}", __dir__)
 
 if File.exist?(gemfile)
   ENV['BUNDLE_GEMFILE'] = gemfile
