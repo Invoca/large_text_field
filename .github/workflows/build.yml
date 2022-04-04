@@ -1,0 +1,42 @@
+---
+on: [push]
+
+name: LargeTextField Build
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby: [2.6, 2.7, '3.0', 3.1]
+        gemfile:
+        - Gemfile
+        - gemfiles/rails_5.gemfile
+        - gemfiles/rails_6.gemfile
+        exclude:
+        - ruby: '3.0'
+          gemfile: gemfiles/rails_5.gemfile
+        - ruby: 3.1
+          gemfile: gemfiles/rails_5.gemfile
+    env:
+      BUNDLE_GEMFILE: ${{ matrix.gemfile }}
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+        ports:
+        - 3306:3306
+    steps:
+    - uses: actions/checkout@v2
+    - uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{matrix.ruby}}
+        bundler: 2.2.29
+        bundler-cache: true
+    - run: bundle exec rake db:setup
+    - run: bundle exec rake test
+
+
