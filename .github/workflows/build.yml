@@ -26,6 +26,7 @@ jobs:
           gemfile: Gemfile
     env:
       BUNDLE_GEMFILE: ${{ matrix.gemfile }}
+      DATABASE_MYSQL_HOST: 127.0.0.1
     services:
       mysql:
         image: mysql:5.7
