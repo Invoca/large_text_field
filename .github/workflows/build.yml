@@ -7,6 +7,14 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+        ports:
+        - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     strategy:
       fail-fast: false
       matrix:
@@ -27,13 +35,6 @@ jobs:
     env:
       BUNDLE_GEMFILE: ${{ matrix.gemfile }}
       DATABASE_MYSQL_HOST: 127.0.0.1
-    services:
-      mysql:
-        image: mysql:5.7
-        env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
-        ports:
-        - 3306:3306
     steps:
     - uses: actions/checkout@v2
     - uses: ruby/setup-ruby@v1
