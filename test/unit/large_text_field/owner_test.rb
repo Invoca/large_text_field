@@ -293,7 +293,7 @@ module LargeTextField
         @library = Library.create!(name: "Cambridge University Library", description: "in england")
         @second_version = Library.find(@library.id)
 
-        @second_version.update_attributes!(description: "The main research library of the University of Cambridge in England")
+        @second_version.update!(description: "The main research library of the University of Cambridge in England")
 
         assert_equal "The main research library of the University of Cambridge in England", @library.reload.description
       end
