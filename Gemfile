@@ -14,7 +14,7 @@ gem 'bigdecimal', '~> 1.4' # See https://github.com/ruby/bigdecimal#which-versio
 gem 'minitest', '~> 5.1'
 gem 'minitest-reporters'
 gem 'pry'
-gem 'rails',     '~> 5.2'
+gem 'rails'
 gem 'rr',        '~> 1.1'
 gem 'rubocop', require: false
 gem 'shoulda',   '~> 3.5'
