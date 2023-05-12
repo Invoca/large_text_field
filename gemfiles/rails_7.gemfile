@@ -17,9 +17,9 @@ gem "rubocop-minitest", require: false
 gem "rubocop-rails", require: false
 gem "shoulda", "~> 3.5"
 gem "shoulda-matchers", "~> 3.0"
+gem "sprockets-rails", require: "sprockets/railtie"
 gem "test-unit", "~> 3.3"
 gem "warning", require: false
-gem "sprockets-rails", require: "sprockets/railtie"
 gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
