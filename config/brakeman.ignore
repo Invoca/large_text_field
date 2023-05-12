@@ -1,0 +1,12 @@
+{
+  "ignored_warnings": [
+    {
+      "fingerprint": "9a3951031616a07c8e02c86652f537e92c08685da97f5ec2b12d5d3602b55bb8",
+      "message": "Support for Ruby 2.7.5 ended on 2023-03-31",
+      "file": "Gemfile.lock",
+      "line": 137,
+      "confidence": "High",
+      "note": "To allow for consumers of the gem that are still using Ruby 2.7.5"
+    }
+  ]
+}
