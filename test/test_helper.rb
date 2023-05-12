@@ -6,6 +6,7 @@ require 'warning'
 Warning.ignore(/.*/, %r{.*lib/shoulda/matchers/active_model/allow_value_matcher/attribute_setter.rb})
 Warning.ignore(/.*/, %r{.*lib/shoulda/context/context.rb})
 Warning.ignore(/.*/, %r{.*lib/mail/parsers.*})
+Warning.ignore(/.*/, %r{.*net/protocol.*})
 
 require File.expand_path('dummy/config/environment.rb', __dir__)
 

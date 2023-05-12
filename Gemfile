@@ -10,7 +10,6 @@ gem 'jquery-rails' # is used by the dummy application
 gem 'minitest', '~> 5.1'
 gem 'minitest-reporters'
 gem 'mysql2'
-gem 'net-http'
 gem 'pry'
 gem 'rails'
 gem 'rr', '~> 1.1'
