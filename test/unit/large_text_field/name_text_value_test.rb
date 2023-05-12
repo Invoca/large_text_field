@@ -11,6 +11,7 @@ module LargeTextField
     should "have field name and value attributes" do
       library = Library.create!(name: "Smithsonian")
       ntv = LargeTextField::NamedTextValue.new(field_name: "puppy", value: "Millie", owner: library)
+
       assert_equal "puppy", ntv.field_name
       assert_equal "Millie", ntv.value
       assert_equal "Smithsonian", ntv.owner.name
@@ -18,6 +19,7 @@ module LargeTextField
 
       # Attributes survive persistance
       ntv = LargeTextField::NamedTextValue.find(ntv.id)
+
       assert_equal "puppy", ntv.field_name
       assert_equal "Millie", ntv.value
       assert_equal "Smithsonian", ntv.owner.name

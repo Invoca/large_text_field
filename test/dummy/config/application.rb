@@ -3,16 +3,7 @@
 require File.expand_path('boot', __dir__)
 
 require 'rails'
-if Rails::VERSION::MAJOR >= 6
-  require 'active_model/railtie'
-  require 'active_record/railtie'
-  require "action_controller/railtie"
-  require "action_mailer/railtie"
-  require "action_view/railtie"
-  require "sprockets/railtie"
-else
-  require 'rails/all'
-end
+require 'rails/all'
 
 Bundler.require(*Rails.groups)
 require "large_text_field"
@@ -49,6 +40,10 @@ module Dummy
 
     # Enable escaping HTML in JSON.
     config.active_support.escape_html_entities_in_json = true
+
+    # Migrate to the new connection handling behavior.
+    # See: https://guides.rubyonrails.org/active_record_multiple_databases.html#migrate-to-the-new-connection-handling
+    config.active_record.legacy_connection_handling = false
 
     # Use SQL instead of Active Record's schema dumper when creating the database.
     # This is necessary if your schema can't be completely dumped by the schema dumper,

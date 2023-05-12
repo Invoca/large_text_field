@@ -47,6 +47,6 @@ end
 task default: %i[test rubocop]
 
 desc 'Run rubocop'
-task :rubocop do
+task rubocop: [:environment] do
   RuboCop::RakeTask.new
 end

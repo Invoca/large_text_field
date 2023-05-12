@@ -14,6 +14,7 @@ module LargeTextField
       assert_equal large_description, l.description
 
       l = Library.find(l.id)
+
       assert_equal large_description, l.description
     end
 
