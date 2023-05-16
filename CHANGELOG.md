@@ -4,7 +4,7 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 Note: This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.1.1] - Unreleased
+## [1.1.0] - Unreleased
 ### Fixed
 - Relaxed dependency on rails to allow rails 7.
 
@@ -12,7 +12,6 @@ Note: This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0
 - Added support for rails 7
 - Added appraisal tests for rails 7
 
-## [1.1.0] - Unreleased
 ### Removed
 - Rails 4 and Ruby 2.6 are no longer supported. Automated testing of those versions has been removed.
 
@@ -39,7 +38,6 @@ Note: This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0
 - Make invoca_utils a declared dependency. (It always was, it just wasn't declared)
 
 
-[1.1.1]: https://github.com/Invoca/large_text_field/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/Invoca/large_text_field/compare/v1.0.2...v1.1.0
 [1.0.2]: https://github.com/Invoca/large_text_field/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/Invoca/large_text_field/compare/v1.0.0...v1.0.1

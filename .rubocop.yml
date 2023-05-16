@@ -40,10 +40,16 @@ Style/ClassAndModuleChildren:
 Style/Documentation:
   Enabled: false
 
+Style/FetchEnvVar:
+  Enabled: false
+
 Style/GuardClause:
   Enabled: false
 
 Style/IfUnlessModifier:
+  Enabled: false
+
+Style/Next:
   Enabled: false
 
 Style/SignalException:

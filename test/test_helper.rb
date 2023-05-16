@@ -10,10 +10,11 @@ Warning.ignore(/.*/, %r{.*net/protocol.*})
 
 require File.expand_path('dummy/config/environment.rb', __dir__)
 
+require "minitest/unit"
+require "pry"
 require "rails/test_help"
 require "rr"
 require "shoulda"
-require "minitest/unit"
 require 'minitest/reporters'
 
 unless ENV['RM_INFO']
@@ -23,8 +24,6 @@ unless ENV['RM_INFO']
     Minitest::Reporters::JUnitReporter.new(junit_output_dir)
   ]
 end
-
-require "pry"
 
 def large_description
   <<-EOF

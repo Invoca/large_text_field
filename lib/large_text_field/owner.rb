@@ -77,12 +77,12 @@ module LargeTextField
           conjugation = options[:singularize_errors] ? "is" : "are"
           maximum = options[:maximum] || MAX_LENGTH
 
-          next unless value.present? && value.size > maximum
-
-          errors.add(
-            key,
-            "#{conjugation} too long (maximum is #{self.class.formatted_integer_value(maximum)} characters)"
-          )
+          if value.present? && value.size > maximum
+            errors.add(
+              key,
+              "#{conjugation} too long (maximum is #{self.class.formatted_integer_value(maximum)} characters)"
+            )
+          end
         end
       end
     end
