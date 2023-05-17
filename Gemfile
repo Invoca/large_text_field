@@ -4,20 +4,17 @@ source "https://rubygems.org"
 
 gemspec
 
-# jquery-rails is used by the dummy application
-gem "jquery-rails"
-
-# To use debugger
-# gem 'debugger'
 gem 'appraisal'
-gem 'bigdecimal', '~> 1.4' # See https://github.com/ruby/bigdecimal#which-version-should-you-select
+gem 'bigdecimal'
 gem 'minitest', '~> 5.1'
 gem 'minitest-reporters'
+gem 'mysql2'
 gem 'pry'
-gem 'rails'
-gem 'rr',        '~> 1.1'
+gem 'rr', '~> 1.1'
 gem 'rubocop', require: false
-gem 'shoulda',   '~> 3.5'
+gem 'rubocop-minitest', require: false
+gem 'rubocop-rails', require: false
+gem 'shoulda', '~> 3.5'
 gem 'shoulda-matchers', '~> 3.0'
 gem 'test-unit', '~> 3.3'
-gem 'mysql2'
+gem 'warning', require: false

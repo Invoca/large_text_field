@@ -1,9 +1,16 @@
 # Examples of how to specifically exclude certain things
+
+require:
+  - rubocop-minitest
+  - rubocop-rails
+
 AllCops:
+  NewCops: enable
   Exclude:
     - '**/*.yml'
     - '**/*.sql'
     - 'config/**/*'
+    - 'gemfiles/*'
     - !ruby/regexp /old_and_unused\.rb$/
 
 # Configure cops for styles that we do not adhere to or are not agreed upon
@@ -33,10 +40,16 @@ Style/ClassAndModuleChildren:
 Style/Documentation:
   Enabled: false
 
+Style/FetchEnvVar:
+  Enabled: false
+
 Style/GuardClause:
   Enabled: false
 
 Style/IfUnlessModifier:
+  Enabled: false
+
+Style/Next:
   Enabled: false
 
 Style/SignalException:

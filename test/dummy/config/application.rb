@@ -3,15 +3,13 @@
 require File.expand_path('boot', __dir__)
 
 require 'rails'
-if Rails::VERSION::MAJOR >= 6
-  require 'active_model/railtie'
-  require 'active_record/railtie'
-  require "action_controller/railtie"
-  require "action_mailer/railtie"
-  require "action_view/railtie"
-  require "sprockets/railtie"
-else
-  require 'rails/all'
+%w[
+  active_record/railtie
+  rails/test_unit/railtie
+].each do |railtie|
+  require railtie
+rescue LoadError
+  # Ignored
 end
 
 Bundler.require(*Rails.groups)
@@ -50,15 +48,21 @@ module Dummy
     # Enable escaping HTML in JSON.
     config.active_support.escape_html_entities_in_json = true
 
+    if Rails::VERSION::STRING.to_f >= 6.1
+      # Migrate to the new connection handling behavior.
+      # See: https://guides.rubyonrails.org/active_record_multiple_databases.html#migrate-to-the-new-connection-handling
+      config.active_record.legacy_connection_handling = false
+    end
+
     # Use SQL instead of Active Record's schema dumper when creating the database.
     # This is necessary if your schema can't be completely dumped by the schema dumper,
     # like if you have constraints or database-specific column types
     # config.active_record.schema_format = :sql
 
     # Enable the asset pipeline
-    config.assets.enabled = true
+    # config.assets.enabled = true
 
     # Version of your assets, change this if you want to expire all your assets
-    config.assets.version = '1.0'
+    # config.assets.version = '1.0'
   end
 end

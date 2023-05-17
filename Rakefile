@@ -27,6 +27,7 @@ end
 
 APP_RAKEFILE = File.expand_path('test/dummy/Rakefile', __dir__)
 load 'rails/tasks/engine.rake'
+load "rails/tasks/statistics.rake"
 
 require 'rake/testtask'
 require 'rubocop/rake_task'
@@ -47,6 +48,6 @@ end
 task default: %i[test rubocop]
 
 desc 'Run rubocop'
-task :rubocop do
+task rubocop: [:environment] do
   RuboCop::RakeTask.new
 end

@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
+require_relative 'application_record'
+
 module LargeTextField
-  class NamedTextValue < ActiveRecord::Base
+  class NamedTextValue < ApplicationRecord
     # Schema
     #   field_name :string, :limit => 255
     #   value      :text, :null=>true, :limit => MYSQL_MEDIUM_TEXT_UTF8_LIMIT

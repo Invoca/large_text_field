@@ -8,7 +8,14 @@ module LargeTextField
     include ActiveSupport::Callbacks
 
     included do
-      has_many         :large_text_fields, class_name: "LargeTextField::NamedTextValue", as: :owner, autosave: true, dependent: :destroy, inverse_of: :owner
+      has_many(
+        :large_text_fields,
+        class_name: "LargeTextField::NamedTextValue",
+        as: :owner,
+        autosave: true,
+        dependent: :destroy,
+        inverse_of: :owner
+      )
       validate         :validate_large_text_fields
       before_save      :write_large_text_field_changes
       define_callbacks :large_text_field_save
@@ -22,13 +29,14 @@ module LargeTextField
 
       result._clear_text_field_on_dup
 
-      large_text_field_options.keys.each { |k| result.set_text_field(k, get_text_field(k)) }
+      large_text_field_options.each_key { |key| result.set_text_field(key, get_text_field(key)) }
 
       result
     end
 
     def reload(options = nil)
       super(options)
+
       @text_field_hash = nil
       self
     end
@@ -61,21 +69,29 @@ module LargeTextField
       text_field_hash_loaded? && @text_field_hash[field_name]&.changes&.any?
     end
 
+    # rubocop:disable Metrics/CyclomaticComplexity
     def validate_large_text_fields
       if text_field_hash_loaded?
-        large_text_field_options.each do |k, options|
-          value = text_field_hash[k]&.value
+        large_text_field_options.each do |key, options|
+          value = text_field_hash[key]&.value
           conjugation = options[:singularize_errors] ? "is" : "are"
           maximum = options[:maximum] || MAX_LENGTH
-          errors.add k, "#{conjugation} too long (maximum is #{self.class.formatted_integer_value(maximum)} characters)" if value.present? && value.size > maximum
+
+          if value.present? && value.size > maximum
+            errors.add(
+              key,
+              "#{conjugation} too long (maximum is #{self.class.formatted_integer_value(maximum)} characters)"
+            )
+          end
         end
       end
     end
+    # rubocop:enable Metrics/CyclomaticComplexity
 
     def write_large_text_field_changes
       run_callbacks(:large_text_field_save)
 
-      @text_field_hash = text_field_hash.compact.select { |_k, v| v.value.presence }
+      @text_field_hash = text_field_hash.compact.select { |_key, value| value.value.presence }
       self.large_text_fields = text_field_hash.values.compact
       true
     end

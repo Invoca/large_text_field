@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class Library < ActiveRecord::Base
-  include LargeTextField::Owner
+class Library < ApplicationRecord
+  include ::LargeTextField::Owner
 
   # Schema
   #   name :string, :limit => 255
@@ -19,5 +19,4 @@ class Library < ActiveRecord::Base
       self.notes = self.class.default_notes == :nil ? nil : self.class.default_notes
     end
   end
-
 end
