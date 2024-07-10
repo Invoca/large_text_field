@@ -12,7 +12,9 @@ rescue LoadError
   # Ignored
 end
 
-Bundler.require(*Rails.groups)
+require 'pry'
+
+# Bundler.require(*Rails.groups)
 require "large_text_field"
 
 module Dummy
@@ -48,7 +50,7 @@ module Dummy
     # Enable escaping HTML in JSON.
     config.active_support.escape_html_entities_in_json = true
 
-    if Rails::VERSION::STRING.to_f >= 6.1
+    if Rails.gem_version >= "6.1" && Rails.gem_version < "7"
       # Migrate to the new connection handling behavior.
       # See: https://guides.rubyonrails.org/active_record_multiple_databases.html#migrate-to-the-new-connection-handling
       config.active_record.legacy_connection_handling = false
