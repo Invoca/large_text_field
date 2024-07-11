@@ -10,6 +10,8 @@ Warning.ignore(/.*/, %r{.*net/protocol.*})
 
 require File.expand_path('dummy/config/environment.rb', __dir__)
 
+require "minitest"
+require "minitest/autorun"
 require "minitest/unit"
 require "pry"
 require "rails/test_help"

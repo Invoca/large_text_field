@@ -17,6 +17,6 @@ gem "shoulda", "~> 3.5"
 gem "shoulda-matchers", "~> 3.0"
 gem "test-unit", "~> 3.3"
 gem "warning", require: false
-gem "rails", "~> 7.0.0"
+gem "rails", "~> 7.1.0"
 
 gemspec path: "../"

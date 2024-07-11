@@ -28,8 +28,8 @@ Gem::Specification.new do |spec|
     Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
   end
 
-  spec.required_ruby_version = '>= 2.7.5'
+  spec.required_ruby_version = '>= 3.1'
 
   spec.add_dependency "invoca-utils", "~> 0.3"
-  spec.add_dependency "rails", ">= 5.2"
+  spec.add_dependency "rails", ">= 6.0"
 end
