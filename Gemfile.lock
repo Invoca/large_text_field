@@ -3,7 +3,7 @@ PATH
   specs:
     large_text_field (1.1.0)
       invoca-utils (~> 0.3)
-      rails (>= 5.2)
+      rails (>= 6.0)
 
 GEM
   remote: https://rubygems.org/
