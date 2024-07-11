@@ -12,9 +12,6 @@ rescue LoadError
   # Ignored
 end
 
-require 'pry'
-
-# Bundler.require(*Rails.groups)
 require "large_text_field"
 
 module Dummy
