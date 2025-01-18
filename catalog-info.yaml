@@ -15,7 +15,7 @@ kind: Component
 metadata:
   name: large_text_field-gem
   title: LargeTextField
-  description: |
+  description: |-
     Large text fields are kept in a central table, and polymorphically associated with your models.
     Access and assignment should behave as if it was a column on the same table.
   tags:
