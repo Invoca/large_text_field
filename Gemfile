@@ -6,7 +6,6 @@ gemspec
 
 gem 'appraisal'
 gem 'appraisal-matrix'
-gem 'bigdecimal'
 gem 'minitest', '~> 5.1'
 gem 'minitest-reporters'
 gem 'mysql2'
@@ -20,7 +19,9 @@ gem 'shoulda-matchers', '~> 3.0'
 gem 'test-unit', '~> 3.3'
 gem 'warning', require: false
 
-gem "base64", "~> 0.2.0"
-gem "mutex_m", "~> 0.3.0"
 
 gem "concurrent-ruby", "~> 1.3", "< 1.3.5"
+
+gem "base64", ">= 0.2.0"
+gem "bigdecimal", ">= 3.1"
+gem "mutex_m", ">= 0.3.0"
