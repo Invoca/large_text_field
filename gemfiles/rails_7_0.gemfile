@@ -17,6 +17,8 @@ gem "shoulda", "~> 3.5"
 gem "shoulda-matchers", "~> 3.0"
 gem "test-unit", "~> 3.3"
 gem "warning", require: false
+gem "base64", "~> 0.2.0"
+gem "mutex_m", "~> 0.3.0"
 gem "rails", "~> 7.0.0"
 
 gemspec path: "../"
