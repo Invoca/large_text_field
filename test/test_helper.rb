@@ -15,7 +15,8 @@ require "minitest/autorun"
 require "minitest/unit"
 require "pry"
 require "rails/test_help"
-require "rr"
+require 'rspec/mocks/minitest_integration'
+require 'rspec/expectations/minitest_integration'
 require "shoulda"
 require 'minitest/reporters'
 

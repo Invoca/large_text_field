@@ -266,7 +266,7 @@ module LargeTextField
 
         new_value = Library.includes(:large_text_fields).find(@library.id)
 
-        dont_allow(Library.connection).select
+        expect(Library.connection).not_to receive(:select)
 
         assert_equal "first",  new_value.description
         assert_equal "second", new_value.catalog

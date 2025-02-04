@@ -8,7 +8,8 @@ gem "minitest", "~> 5.1"
 gem "minitest-reporters"
 gem "mysql2"
 gem "pry"
-gem "rr", "~> 1.1"
+gem "rspec-expectations"
+gem "rspec-mocks"
 gem "rubocop", require: false
 gem "rubocop-minitest", require: false
 gem "rubocop-rails", require: false
