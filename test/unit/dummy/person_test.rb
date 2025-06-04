@@ -19,7 +19,7 @@ module LargeTextField
       assert_equal resume_text, p.resume
     end
 
-    should "find fields from depreciated large text field table" do
+    should "find fields from deprecated large text field table" do
       p = Person.new(name: "Obama")
       p.story = "Story about Obama"
       p.save!

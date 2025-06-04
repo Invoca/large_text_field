@@ -7,7 +7,7 @@ class Person < ApplicationRecord
   #   name :string, :limit => 255
 
   large_text_field_class_name_override "DummyLargeTextValue"
-  large_text_field_depreciated_class_name_override "LargeTextField::NamedTextValue"
+  large_text_field_deprecated_class_name_override "LargeTextField::NamedTextValue"
 
   large_text_field :story
   large_text_field :resume

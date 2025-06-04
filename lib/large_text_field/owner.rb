@@ -23,10 +23,10 @@ module LargeTextField
       class_attribute :large_text_field_class
       self.large_text_field_class = LargeTextField::NamedTextValue
 
-      class_attribute :large_text_field_depreciated_class_name
-      self.large_text_field_depreciated_class_name = nil
-      class_attribute :large_text_field_depreciated_class
-      self.large_text_field_depreciated_class = nil
+      class_attribute :large_text_field_deprecated_class_name
+      self.large_text_field_deprecated_class_name = nil
+      class_attribute :large_text_field_deprecated_class
+      self.large_text_field_deprecated_class = nil
     end
 
     def dup
@@ -49,7 +49,7 @@ module LargeTextField
     def text_field_hash
       unless @text_field_hash
         @text_field_hash = large_text_fields.build_hash { |text_field| [text_field.field_name, text_field] }
-        if large_text_field_depreciated_class_name
+        if large_text_field_deprecated_class_name
           legacy_large_text_fields.each { |text_field| @text_field_hash[text_field.field_name] ||= text_field }
         end
       end
@@ -122,9 +122,9 @@ module LargeTextField
         self.large_text_field_class = Object.const_get(value)
       end
 
-      def large_text_field_depreciated_class_name_override(value)
-        self.large_text_field_depreciated_class_name = value
-        self.large_text_field_depreciated_class = Object.const_get(value)
+      def large_text_field_deprecated_class_name_override(value)
+        self.large_text_field_deprecated_class_name = value
+        self.large_text_field_deprecated_class = Object.const_get(value)
       end
 
       def initialize_large_text_field
@@ -138,10 +138,10 @@ module LargeTextField
           dependent: :destroy,
           inverse_of: :owner
         )
-        if large_text_field_depreciated_class_name
+        if large_text_field_deprecated_class_name
           has_many(
             :legacy_large_text_fields,
-            class_name: large_text_field_depreciated_class_name,
+            class_name: large_text_field_deprecated_class_name,
             as: :owner,
             autosave: true,
             dependent: :destroy,
