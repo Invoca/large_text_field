@@ -8,20 +8,25 @@ module LargeTextField
     include ActiveSupport::Callbacks
 
     included do
-      has_many(
-        :large_text_fields,
-        class_name: "LargeTextField::NamedTextValue",
-        as: :owner,
-        autosave: true,
-        dependent: :destroy,
-        inverse_of: :owner
-      )
       validate         :validate_large_text_fields
       before_save      :write_large_text_field_changes
       define_callbacks :large_text_field_save
 
       class_attribute :large_text_field_options
       self.large_text_field_options = {}
+
+      class_attribute :initialized
+      self.initialized = false
+
+      class_attribute :large_text_field_class_name
+      self.large_text_field_class_name = "LargeTextField::NamedTextValue"
+      class_attribute :large_text_field_class
+      self.large_text_field_class = LargeTextField::NamedTextValue
+
+      class_attribute :large_text_field_depreciated_class_name
+      self.large_text_field_depreciated_class_name = nil
+      class_attribute :large_text_field_depreciated_class
+      self.large_text_field_depreciated_class = nil
     end
 
     def dup
@@ -42,7 +47,13 @@ module LargeTextField
     end
 
     def text_field_hash
-      @text_field_hash ||= large_text_fields.build_hash { |text_field| [text_field.field_name, text_field] }
+      unless @text_field_hash
+        @text_field_hash = large_text_fields.build_hash { |text_field| [text_field.field_name, text_field] }
+        if large_text_field_depreciated_class_name
+          legacy_large_text_fields.each { |text_field| @text_field_hash[text_field.field_name] ||= text_field }
+        end
+      end
+      @text_field_hash
     end
 
     def text_field_hash_loaded?
@@ -61,7 +72,7 @@ module LargeTextField
       if (field = text_field_hash[field_name])
         field.value = value
       else
-        text_field_hash[field_name] = LargeTextField::NamedTextValue.new(owner: self, field_name: field_name, value: value)
+        text_field_hash[field_name] = large_text_field_class.new(owner: self, field_name:, value:)
       end
     end
 
@@ -91,7 +102,10 @@ module LargeTextField
     def write_large_text_field_changes
       run_callbacks(:large_text_field_save)
 
-      @text_field_hash = text_field_hash.compact.select { |_key, value| value.value.presence }
+      @text_field_hash = text_field_hash
+                         .compact
+                         .select { |_key, value| value.value.presence }
+                         .transform_values { |value| value.is_a?(large_text_field_class) ? value : large_text_field_class.new(owner: self, field_name: value.field_name, value: value.value) }
       self.large_text_fields = text_field_hash.values.compact
       true
     end
@@ -103,7 +117,43 @@ module LargeTextField
     end
 
     module ClassMethods
+      def large_text_field_class_name_override(value)
+        self.large_text_field_class_name = value
+        self.large_text_field_class = Object.const_get(value)
+      end
+
+      def large_text_field_depreciated_class_name_override(value)
+        self.large_text_field_depreciated_class_name = value
+        self.large_text_field_depreciated_class = Object.const_get(value)
+      end
+
+      def initialize_large_text_field
+        return if initialized # skip if already initialized
+
+        has_many(
+          :large_text_fields,
+          class_name: large_text_field_class_name,
+          as: :owner,
+          autosave: true,
+          dependent: :destroy,
+          inverse_of: :owner
+        )
+        if large_text_field_depreciated_class_name
+          has_many(
+            :legacy_large_text_fields,
+            class_name: large_text_field_depreciated_class_name,
+            as: :owner,
+            autosave: true,
+            dependent: :destroy,
+            inverse_of: :owner
+          )
+        end
+        self.initialized = true
+      end
+
       def large_text_field(field_name, maximum: nil, singularize_errors: false)
+        initialize_large_text_field # ensure the association is initialized
+
         field_name = field_name.to_s
 
         # validate custom maximum
@@ -117,7 +167,7 @@ module LargeTextField
           end
         end
 
-        large_text_field_options[field_name] = { maximum: maximum, singularize_errors: singularize_errors }
+        large_text_field_options[field_name] = { maximum:, singularize_errors: }
         define_method(field_name)              {         get_text_field(field_name)        }
         define_method("#{field_name}=")        { |value| set_text_field(field_name, value) }
         define_method("#{field_name}_changed?") { text_field_changed(field_name) }
