@@ -12,13 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2025_06_04_150254) do
 
-  create_table "dummu_large_text_fields", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.string "field_name", null: false
-    t.text "value", size: :medium
-    t.integer "owner_id", null: false
-    t.string "owner_type", null: false
-  end
-
   create_table "dummy_large_text_fields", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "field_name", null: false
     t.text "value", size: :medium
