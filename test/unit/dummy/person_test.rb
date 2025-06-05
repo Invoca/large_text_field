@@ -39,5 +39,20 @@ module LargeTextField
       # Ensure that the updated resume was saved in the new table
       assert_predicate DummyLargeTextValue.where(owner: p, field_name: "resume"), :exists?
     end
+
+    should "find fields from deprecated large text field table, updates are written to default table" do
+      p = Person.new(name: "Obama")
+      NamedTextValue.create!(field_name: "resume", value: "Old value", owner: p)
+      p = Person.find(p.id)
+
+      p.resume = "Retired"
+      p.save!
+
+      # Ensure that the resume was saved in the new table
+      assert_predicate DummyLargeTextValue.where(owner: p, field_name: "resume"), :exists?
+
+      # Does not currently delete the old value
+      assert_predicate NamedTextValue.where(owner: p, field_name: "resume"), :exists?
+    end
   end
 end

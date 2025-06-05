@@ -50,7 +50,7 @@ module LargeTextField
       unless @text_field_hash
         @text_field_hash = large_text_fields.build_hash { |text_field| [text_field.field_name, text_field] }
         if large_text_field_deprecated_class_name
-          legacy_large_text_fields.each { |text_field| @text_field_hash[text_field.field_name] ||= text_field }
+          deprecated_large_text_fields.each { |text_field| @text_field_hash[text_field.field_name] ||= text_field }
         end
       end
       @text_field_hash
@@ -140,7 +140,7 @@ module LargeTextField
         )
         if large_text_field_deprecated_class_name
           has_many(
-            :legacy_large_text_fields,
+            :deprecated_large_text_fields,
             class_name: large_text_field_deprecated_class_name,
             as: :owner,
             autosave: true,
