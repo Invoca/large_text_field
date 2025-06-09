@@ -9,6 +9,7 @@ Note: This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0
 ### Added
 
 - Added large_text_field_class_name_override and large_text_field_deprecated_class_name_override class methods allowing a model to use a different table for large_text_field support
+- Previously the association to the large text file model was created when the module was included. The creation of this association is now delayed until the first field is defined. This allows for a cleaner syntax for setting options.
 
 ## [1.1.0] - 2023-05-17
 

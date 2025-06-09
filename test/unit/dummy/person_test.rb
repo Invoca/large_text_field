@@ -45,14 +45,15 @@ module LargeTextField
       NamedTextValue.create!(field_name: "resume", value: "Old value", owner: p)
       p = Person.find(p.id)
 
-      p.resume = "Retired"
+      new_value = "Retired"
+      p.resume = new_value
       p.save!
 
       # Ensure that the resume was saved in the new table
-      assert_predicate DummyLargeTextValue.where(owner: p, field_name: "resume"), :exists?
+      assert_predicate DummyLargeTextValue.where(owner: p, field_name: "resume", value: new_value), :exists?
 
-      # Does not currently delete the old value
-      assert_predicate NamedTextValue.where(owner: p, field_name: "resume"), :exists?
+      # Both values are currently maintained, but the new table is the source of truth
+      assert_predicate NamedTextValue.where(owner: p, field_name: "resume", value: new_value), :exists?
     end
   end
 end
