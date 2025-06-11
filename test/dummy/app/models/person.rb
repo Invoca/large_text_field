@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Person < ApplicationRecord
-  include ::LargeTextField::Owner
+  include ::LargeTextField::Base
 
   # Schema
   #   name :string, :limit => 255

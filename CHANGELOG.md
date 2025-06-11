@@ -4,6 +4,12 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 Note: This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] - 2025-07-11
+
+### Added
+
+- New LargeTextField::Base module, which delays the initialization of the association(s), and made LargeTextField::Owner a simple wrapper around Base which includes Base and initializes the association immediately. This was required to handle regressions for use cases that included the module, but did not define any large text value fields
+
 ## [1.3.0] - 2025-07-09
 
 ### Added
